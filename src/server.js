@@ -1,11 +1,12 @@
 
-var util = require('./lib/util'),
-    app  = require('./lib/app'),
-    TaskManager = require('./lib/task-manager'),
-    ParserManager  = require('./lib/parser-manager'),
-    SessionManager = require('./lib/session-manager'),
-    io = require('socket.io'),
-    socket = io.listen(app);
+require('./lib/config');
+
+var TaskManager    = require('./lib/task-manager');
+var SessionManager = require('./lib/session-manager');
+
+
+//////////////////////////////////////////////////////////////////
+// App Router
 
 app.get(/^\/(\w+)(\/room\/(\w+))?/, function(req, res, next) {
     var type = req.params[0],
@@ -44,13 +45,17 @@ app.get('/clearqueue', function(req, res) {
 });
 
 app.post('/post', function(req, res) {
-    util.log('-------------post----------');
-    util.log(req.body);
     var data = req.body;
     data.result = decodeURIComponent(data.result);
     TaskManager.update(data);
     res.end('');
 });
+
+app.start();
+
+
+//////////////////////////////////////////////////////////////////
+// Socket
 
 socket.on('connection', function(s) {
     s.on('message', function(data, self) {
@@ -85,7 +90,3 @@ socket.on('connection', function(s) {
     });
 });
 
-
-var port = process.env.PORT || 8080;
-app.listen(port);
-console.log('[log] server started at '+port);

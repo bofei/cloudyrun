@@ -1,27 +1,12 @@
 
-var mongoose = require('mongoose'),
-    Schema   = mongoose.Schema,
-    db       = mongoose.connect('mongodb://127.0.0.1/cloudyrun');
-
-mongoose.model('Task', new Schema({
-    taskId:       String,
-    taskType:     String,
-    command:      String,
-    client:       Array,
-    clientStatus: Array,
-    console:      Array,
-    date:         Date
-}));
-
-
-var util = require('./util'),
-    uuid = require('node-uuid'),
-    ParserManager = require('./parser-manager'),
-    SessionManager = require('./session-manager'),
+var SessionManager = require('./session-manager'),
     Task  = db.model('Task'),
 
-    queue = [], // 任务队列
-    EXECUTING_TASK_MAX = 1; // 最多同时执行的任务数
+    // 任务队列
+    queue = [],
+
+    // 最多同时执行的任务数
+    EXECUTING_TASK_MAX = 1;
 
 
 var TaskManager = {
@@ -58,6 +43,7 @@ var TaskManager = {
         util.log('[log] t.clientStatus[0]: ' + t.clientStatus[0]);
 
         // 遍历插件，确定任务类型，并和插件绑定
+        var ParserManager = require('./parser-manager');
         var parsers = ParserManager.getParsers();
         for (var i=0; i<parsers.length; i++) {
             var parser = parsers[i];

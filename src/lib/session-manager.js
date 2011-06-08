@@ -2,9 +2,7 @@
  * Session Manager
  */
 
-var util = require('./util');
 var ParserManager  = require('./parser-manager');
-var DEFAULT_ROOM = 'cloudyrun_default_room'; // 默认房间号
 var sessions = {
     console: {},
     client: {}
@@ -26,7 +24,7 @@ var SessionManager = {
             s[k] = data[k];
         }
         if (!s.room) {
-            s.room = DEFAULT_ROOM;
+            s.room = DEFAULT_ROOM_NAME;
         }
         sessions[data.type][s.sessionId] = s;
 

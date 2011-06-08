@@ -1,6 +1,5 @@
 
 var parsersObject = require('../parsers/index.js'),
-    util = require('./util'),
     parsers = [];
 
 for (var k in parsersObject) {
@@ -9,10 +8,6 @@ for (var k in parsersObject) {
 parsers.sort(function(a, b) {
     return a.index > b.index;
 });
-
-util.log('-- parsers start --');
-util.log(parsers);
-util.log('-- parsers end --');
 
 var ParserManager = {
 
