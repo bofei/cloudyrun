@@ -401,6 +401,7 @@ var TaskManager = {
             if (t.taskType === 'runTest') {
                 detailHTML += '<tr><th>测试集</th><th>用例</th><th>结果</th><th>备注</th></tr>';
                 for (var k in c) {
+                    try {
                     var r = JSON.parse(c[k][0]);
                     var b = c[k][1];
                     result[b] = r;
@@ -409,7 +410,6 @@ var TaskManager = {
                         status = 'failed';
                     }
 
-                    try {
                     var rr = JSON.parse(decodeURIComponent(r.result));
                     detail[b] = rr;
                     detailHTML += '<tr class="browser"><td colspan="4">'+b+'</td></tr>';
