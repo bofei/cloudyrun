@@ -398,6 +398,12 @@ var TaskManager = {
             var detailHTML = '<table>';
             var status = 'passed';
 
+            var style = {
+                'passed': 'background:green;color:#fff;',
+                'failed': 'background:red;color:#fff;',
+                'timeout': 'background:gray;color:#fff;'
+            };
+
             if (t.taskType === 'runTest') {
                 detailHTML += '<tr><th>测试集</th><th>用例</th><th>结果</th><th>备注</th></tr>';
                 for (var k in c) {
@@ -405,7 +411,7 @@ var TaskManager = {
                     var r = JSON.parse(c[k][0]);
                     var b = c[k][1];
                     result[b] = r;
-                    resultHTML += b + ': <span class="'+r.status+'">' + r.status + '</span><br>';
+                    resultHTML += b + ': <span style="'+style[r.status]+'" class="'+r.status+'">' + r.status + '</span><br>';
                     if (r.status !== 'passed') {
                         status = 'failed';
                     }

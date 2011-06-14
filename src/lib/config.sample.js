@@ -1,5 +1,6 @@
 
 module.exports = {
+    host: '',
     mail: {
         user: '',
         password: '',

@@ -79,18 +79,16 @@ var GroupManager = {
                             var html = '';
                             html += '<style>' +
                                     '.task { border: 1px solid #ccc; margin:5px 0; }' +
-                                    '.passed { background:green; color:#fff; }' +
-                                    '.failed { background:red; color:#fff; }' +
-                                    '.timeout { background:gray; color:#fff; }' +
                                     '</style>';
-                            html += '<div>name: '+data.name+'</div>';
-                            html += '<div>id: '+data.groupId+'</div>';
-                            html += '<div>mail: '+data.mail+'</div>';
-                            html += '<div>commands: '+data.commands+'</div>';
-                            html += '<div>results: </div>';
+                            var url = global.config.host + 'groupview/' + data.groupId;
+                            html += '<div><b><a href="'+url+'" target="_blank">'+data.name+'</a></b></div>';
+                            html += '<div><b>send mail to: </b>'+data.mail+'</div>';
+                            html += '<div><b>commands: </b></div>';
+                            html += '<div>'+data.commands+'</div>';
+                            html += '<div><b>results: </b></div>';
                             html += '<div>'+data.runResultHTMLLast+'</div>';
-                            console.log(html)
-                            var subject = 'CloudyRun Group Report: ' + data.name;
+                            console.log(html);
+                            var subject = 'CloudyRun Report: ' + data.name;
                             self.sendMail(html, subject, data.mail);
                         });
                     });
@@ -208,6 +206,7 @@ var GroupManager = {
                     html += '<div>'+t.command+'</div>';
                     html += t.resultHTML;
                     html += '</div>';
+                    html += '<br>';
                 }
             });
         }
