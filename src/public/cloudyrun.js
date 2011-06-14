@@ -84,8 +84,8 @@ var CloudyRun = {
             });
             
             if (self === top) {
-                data = 'good, please copy and run!<br> <code>:run '+location.href+'</code>';
-                $('<div style="position:fixed;right:10px;bottom:10px;z-index:1000001;">'+data+'</div>').appendTo('body');
+                // data = 'good, please copy and run!<br> <code>:run '+location.href+'</code>';
+                // $('<div style="position:fixed;right:10px;bottom:10px;z-index:1000001;">'+data+'</div>').appendTo('body');
             } else {
                 var server = this._config.server;
                 this._post(server + 'post', data);

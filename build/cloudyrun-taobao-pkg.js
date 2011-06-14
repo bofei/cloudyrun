@@ -3788,6 +3788,11 @@ var util = {
         if (typeof console !== 'undefined') {
             try {
                 if (process.argv.indexOf('nolog') === -1) {
+                    if (msg.indexOf('send message to') > -1 ||
+                        msg.indexOf('send content') > -1 ||
+                        msg.indexOf('message getted') > -1) {
+                        return;
+                    }
                     console.log(msg);
                 }
             } catch(e) {
@@ -4036,8 +4041,8 @@ var CloudyRun = {
             });
             
             if (self === top) {
-                data = 'good, please copy and run!<br> <code>:run '+location.href+'</code>';
-                $('<div style="position:fixed;right:10px;bottom:10px;z-index:1000001;">'+data+'</div>').appendTo('body');
+                // data = 'good, please copy and run!<br> <code>:run '+location.href+'</code>';
+                // $('<div style="position:fixed;right:10px;bottom:10px;z-index:1000001;">'+data+'</div>').appendTo('body');
             } else {
                 var server = this._config.server;
                 this._post(server + 'post', data);
