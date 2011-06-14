@@ -206,6 +206,8 @@ var GroupManager = {
                     html += '<div>'+t.command+'</div>';
                     html += t.resultHTML;
                     html += '</div>';
+                    var url = global.config.host + 'taskview/' + t.taskId;
+                    html += '<div><a href="'+url+'" target="_blank">task detail..</a></div>';
                     html += '<br>';
                 }
             });
