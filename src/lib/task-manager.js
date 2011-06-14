@@ -439,6 +439,7 @@ var TaskManager = {
 
             success({
                 layout:     false,
+                taskId:     t.taskId,
                 taskType:   t.taskType,
                 general:    JSON.stringify(t),
                 command:    ':' + t.taskType + ' ' + t.command,
