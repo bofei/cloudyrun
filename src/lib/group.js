@@ -80,6 +80,8 @@ var GroupManager = {
                             html += '<style>' +
                                     '.task { border: 1px solid #ccc; margin:5px 0; }' +
                                     '.passed { background:green; color:#fff; }' +
+                                    '.failed { background:red; color:#fff; }' +
+                                    '.timeout { background:gray; color:#fff; }' +
                                     '</style>';
                             html += '<div>name: '+data.name+'</div>';
                             html += '<div>id: '+data.groupId+'</div>';
