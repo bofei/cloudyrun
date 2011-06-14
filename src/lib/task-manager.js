@@ -1,13 +1,7 @@
 
-var SessionManager = require('./session-manager'),
-    Task  = db.model('Task'),
-
-    // 任务队列
-    queue = [],
-
-    // 最多同时执行的任务数
-    EXECUTING_TASK_MAX = 1;
-
+var SessionManager = require('./session-manager');
+var Task  = db.model('Task');
+var queue = [];
 
 var TaskManager = {
 
@@ -16,15 +10,11 @@ var TaskManager = {
      * @param data {Object}
      */
     add: function(session, data, success) {
-        if (util.isString(data.client)) {
-            data.client = [data.client];
-        }
-
+        session = session || {};
         var t = util.extend(new Task(), {
             'taskId':   uuid(),
-            // 'taskType': 'execScript',
             'command':  data.command.trim(),
-            'room':     session.room,
+            'room':     session.room || DEFAULT_ROOM_NAME,
             'client':   data.client || [],
             'console':  [session.sessionId],
             'date':     new Date()
@@ -68,7 +58,7 @@ var TaskManager = {
             }
         }
 
-        util.log('saving');
+        util.log('[log] task adding');
         var self = this;
         t.save(function(err) {
             if (err) {
@@ -79,7 +69,7 @@ var TaskManager = {
             queue.push(t);
             self.checkQueue();
             if (success && util.isFunction(success)) {
-                success.call(this);
+                success.call(self, t);
             }
 
             util.log('[success] task saved, command: ' + t.command);
@@ -271,9 +261,6 @@ var TaskManager = {
      * @param taskId {String}
      */
     getTaskById: function(taskId) {
-
-        util.log('tmp----');
-        util.log(queue.length);
         for (var i=0; i<queue.length; i++) {
             util.log(queue[i].taskId);
         }
@@ -381,10 +368,96 @@ var TaskManager = {
             if (err || !docs) return;
             var html = '';
             docs.forEach(function(a) {
-                html += ':' + a.taskType + ' ' + a.command + ' <span style="display:none;">' + a.taskId + '</span><br>';
+                html += ':' + a.taskType + ' ' + a.command + ' <span style="margin-left:20px;font-size:12px;">' + a.taskId + '</span><br>';
             });
             cb && cb(html);
         });
+    },
+
+    //////////////////////////////////////////////////////////
+
+    _findTasks: function(id, success) {
+        var filter = id ? {taskId:id} : null;
+        Task.find(filter, [], {sort:{date:-1}}, function(err, docs) {
+            if (err || !docs) {
+                return;
+            }
+            success && success(docs);
+        });
+    },
+
+    getTaskViewById: function(id, success) {
+        this._findTasks(id, function(docs) {
+            if (!docs || !docs[0]) return;
+
+            var t = docs[0];
+            var c = t.clientStatus[0];
+            var result = {};
+            var resultHTML = '';
+            var detail = {};
+            var detailHTML = '<table>';
+            var status = 'passed';
+
+            if (t.taskType === 'runTest') {
+                detailHTML += '<tr><th>测试集</th><th>用例</th><th>结果</th><th>备注</th></tr>';
+                for (var k in c) {
+                    var r = JSON.parse(c[k][0]);
+                    var b = c[k][1];
+                    result[b] = r;
+                    resultHTML += b + ': <span class="'+r.status+'">' + r.status + '</span><br>';
+                    if (r.status !== 'passed') {
+                        status = 'failed';
+                    }
+
+                    try {
+                    var rr = JSON.parse(decodeURIComponent(r.result));
+                    detail[b] = rr;
+                    detailHTML += '<tr class="browser"><td colspan="4">'+b+'</td></tr>';
+                    for (var kk in rr.suites) {
+                        var sn = rr.suites[kk]['description'];
+                        var ss = rr.suites[kk]['specs'];
+                        for (var i=0; i<ss.length; i++) {
+                            detailHTML += '<tr>' +
+                            '<td>'+sn+'</td>' +
+                            '<td style="font-weight:bold;">'+ss[i]['description']+'</td>' +
+                            '<td class="'+ss[i]['status']+'"><b>'+ss[i]['status']+'</b></td>' +
+                            '<td>-</td>' +
+                            '</tr>';
+                        }
+                    }
+                    console.log(rr['suites']['0']['specs']);
+                    } catch (e) {}
+                }
+                detailHTML += '</table>';
+            }
+
+            success({
+                layout:     false,
+                taskType:   t.taskType,
+                general:    JSON.stringify(t),
+                command:    ':' + t.taskType + ' ' + t.command,
+                status:     status,
+                result:     result,
+                resultHTML: resultHTML,
+                detail:     detail,
+                detailHTML: detailHTML
+            });
+        });
+    },
+
+    runAfterTaskComplete: function(ids, cb) {
+        var self = this;
+        var func = arguments.callee;
+        for (var i=0; i<ids.length; i++) {
+            if (self.getTaskById(ids[i])) {
+                setTimeout(function() {
+                    func.call(self, ids, cb);
+                }, 1000);
+                return;
+            }
+        }
+
+        cb();
     }
 };
 

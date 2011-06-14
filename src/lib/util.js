@@ -9,6 +9,11 @@ var util = {
         if (typeof console !== 'undefined') {
             try {
                 if (process.argv.indexOf('nolog') === -1) {
+                    if (msg.indexOf('send message to') > -1 ||
+                        msg.indexOf('send content') > -1 ||
+                        msg.indexOf('message getted') > -1) {
+                        return;
+                    }
                     console.log(msg);
                 }
             } catch(e) {

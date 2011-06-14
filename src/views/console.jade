@@ -35,6 +35,37 @@ html
                         a(href='http://wiki.ued.taobao.net/doku.php?id=user:yunqian:test:guide', target='_blank') wiki
                         ，有问题或建议请联系<b>云谦</b>。
 
+    #group
+        #group-hd
+          a(href='#', class='group-list') GroupList
+          a(href='#', class='group-add')  GroupAdd
+        #group-bd
+        #group-form-fragment
+            div
+              label Group Name：
+              input(name='groupname', size=50)
+              &nbsp;&nbsp;<span style="color:red;">*</span>
+            div
+              label#commands-label Commands：
+              input(name='commands', size=50)
+              a(href="#", class="command-remove") remove
+              input(name='commands', size=50)
+              a(href="#", class="command-remove") remove
+              br
+              a(href="#", class="command-add") add
+            div
+              label runDate：
+              input(name='runHour',size=2)
+              小时&nbsp;
+              input(name='runMinite',size=2)
+              分钟
+            div
+              label Mail：
+              textarea(name='mail', cols=80, rows=3)
+            div
+              input(type='hidden', name='groupId')
+              button(type='submit') submit
+
     script(src='/assets/Socket.IO/socket.io.min.js')
     script(src='/assets/jquery-1.5.2.min.js')
     script(src='/util.js')

@@ -1,0 +1,24 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    title CloudyRun:Task
+    style
+      .passed {background:green;color:#fff;}
+      .failed {background:red;color:#fff;}
+      table { table-layout:fixed; border-collapse: collapse; }
+      td, th { border: 1px solid #ccc; font-size: 14px; padding: 3px 5px; }
+      th { background: #ccc; color: #000; border-color:#666; }
+      tr.browser td { padding-top:20px; font-weight:bold; color:blue; }
+  body
+    h2 General
+    textarea(cols=100,rows=6) !{general}
+
+    h2 Command
+    !{command}
+
+    h2 Result
+    !{resultHTML}
+
+    h2 Detail
+    !{detailHTML}

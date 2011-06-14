@@ -174,3 +174,72 @@ p.tips {
 #queue li:first-child {
     background: green;
 }
+
+/**
+ * Group
+ */
+#group {
+    background: #fff;
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -200px;
+    margin-left: -300px;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #333;
+}
+#group-hd {
+    height: 40px;
+    overflow: hidden;
+    padding-left: 10px;
+    border-bottom: 1px solid #ccc;
+}
+#group-hd a {
+    float: left;
+    line-height: 40px;
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: blue;
+    cursor: pointer;
+}
+#group-hd a.active {
+    color: red;
+}
+#group-form {
+    padding: 20px;
+}
+#group-form div {
+    position: relative;
+    padding-left: 100px;
+    margin-bottom: 10px;
+}
+#group-form label {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+#group-form-fragment {
+    display: none;
+}
+
+#group .group {
+    position: relative;
+    border:  1px solid #ccc;
+}
+#group .group:hover {
+    border-color: #000;
+}
+#group .group-action {
+    position: absolute;
+    right: 10px;
+    top: 1px;
+}
+#group .group-action a {
+    margin-left: 6px;
+}
+#group .command-remove {
+    margin-left: 6px;
+}

@@ -1,8 +1,9 @@
 
-require('./lib/config');
+require('./lib/global');
 
 var TaskManager    = require('./lib/task-manager');
 var SessionManager = require('./lib/session-manager');
+var GroupManager = require('./lib/group');
 
 
 //////////////////////////////////////////////////////////////////
@@ -24,6 +25,20 @@ app.get('/task/:taskId', function(req, res) {
     console.log('taskId: ' + taskId);
     TaskManager.getTaskInfoById(taskId, function(docs) {
         res.send(docs);
+    });
+});
+
+app.get('/taskview/:taskId', function(req, res) {
+    var taskId = req.params.taskId;
+    TaskManager.getTaskViewById(taskId, function(data) {
+        res.render('task.jade', data);
+    });
+});
+
+app.get('/groupview/:groupId', function(req, res) {
+    var groupId = req.params.groupId;
+    GroupManager.getGroupViewById(groupId, function(data) {
+        res.render('group.jade', data);
     });
 });
 
@@ -51,6 +66,19 @@ app.post('/post', function(req, res) {
     res.end('');
 });
 
+app.get('/groupadd', function(req, res) {
+    var g = GroupManager.add({commands:['typeof /a/', 'typeof /b/']}, function(g){
+        this.exec(g);
+    });
+    res.end(JSON.stringify(g));
+});
+
+app.get('/grouplist', function(req, res) {
+    GroupManager.getGroups(null, function(html) {
+        res.end(html);
+    });
+});
+
 app.start();
 
 
@@ -68,6 +96,12 @@ socket.on('connection', function(s) {
         }
         self = this;
 
+        var updateGroup = function() {
+            GroupManager.getGroups(null, function(data) {
+                SessionManager.send(self, {messageType:'listGroup',data:data});
+            });
+        };
+
         switch (data.messageType) {
             case 'connect':
                 SessionManager.add(self, data, TaskManager);
@@ -81,6 +115,31 @@ socket.on('connection', function(s) {
                 data.sessionId = s.sessionId;
                 TaskManager.update(data);
                 break;
+            case 'listGroup':
+                updateGroup();
+                break;
+            case 'editGroup':
+                GroupManager.getGroups(data.groupId, function(data) {
+                    if (data && data[0]) {
+                        SessionManager.send(self, {
+                            messageType: 'editGroup',
+                            data: data[0]
+                        });
+                    }
+                });
+                break;
+            case 'addGroup':
+                GroupManager.add(data.data, function() {
+                    updateGroup();
+                });
+                break;
+            case 'updateGroup':
+                GroupManager.update(data.data, function() {
+                    updateGroup();
+                });
+                break;
+            case 'runGroup':
+                GroupManager.exec(data.groupId, self);
         }
     });
 

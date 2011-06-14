@@ -190,5 +190,16 @@ var handler = {
         }
 
         q.html('<h2>Queue</h2><ol><li>'+data.queue.join('</li><li>')+'</li></ol>');
-    }
+    },
+
+    listGroup: function(data) {
+        GroupManager.list(data.data);
+    },
+    editGroup: function(data) {
+        GroupManager.edit(data.data);
+    },
+    addGroup: function() {
+        GroupManager
+    },
+    updateGroup: function() {}
 };

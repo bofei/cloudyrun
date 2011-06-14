@@ -1,0 +1,24 @@
+!!! 5
+html
+  head
+    meta(charset='utf-8')
+    title CloudyRun:Task
+    style
+      .task { border: 1px solid #ccc; }
+      .passed { background:green; color:#fff; }
+
+  body
+    h2 Name
+    !{name}
+    
+    h2 RunHour & RunMinite
+    !{runHour} hour, !{runMinite} minite
+
+    h2 Commands
+    !{commands}
+
+    h2 Mail
+    !{mail}
+
+    h2 Result
+    !{runResultHTML}
