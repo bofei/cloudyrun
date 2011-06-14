@@ -26,20 +26,33 @@ $('#frm').submit(function() {
         return false;
     }
 
-    if (!$('#browser-list b')[0]) {
-        alert('[warn] no client connected!');
-        return false;
-    }
-
     if (val === ':clear') {
         $('#output div.task:not(.task-help)').remove();
         $('#command').val('');
+        return false;
+    }
+
+    if (val === ':group') {
+        $('#group').show();
+        socket.sendData({ 'messageType': 'listGroup' });
+        $('#command').val('');
+        return false;
+    }
+
+    if (!$('#browser-list b')[0]) {
+        alert('[warn] no client connected!');
         return false;
     }
     
     TaskManager.add(val);
     $('#command').val('');
     return false;
+});
+
+$(document).keydown(function(e) {
+    if (e.keyCode === 27) {
+        $('#group').hide();
+    }
 });
 
 ////////////////////////////////////////////////////////////
