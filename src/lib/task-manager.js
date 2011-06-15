@@ -423,11 +423,12 @@ var TaskManager = {
                         var sn = rr.suites[kk]['description'];
                         var ss = rr.suites[kk]['specs'];
                         for (var i=0; i<ss.length; i++) {
+                            console.log(ss[i]['messages']);
                             detailHTML += '<tr>' +
                             '<td>'+sn+'</td>' +
                             '<td style="font-weight:bold;">'+ss[i]['description']+'</td>' +
                             '<td class="'+ss[i]['status']+'"><b>'+ss[i]['status']+'</b></td>' +
-                            '<td>-</td>' +
+                            '<td>'+(ss[i]['messages'][0] ? ss[i]['messages'][0].message : '-')+'</td>' +
                             '</tr>';
                         }
                     }

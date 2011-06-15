@@ -23,6 +23,7 @@
             <path path="./public/jasmine/jasmine.js"/>
             <path path="./public/jasmine/jasmine-html.js"/>
             <path path="./public/jasmine/jasmine-json.js"/>
+            <path path="./public/jasmine/jasmine-taobao.js"/>
             <path path="./public/jasmine/event-simulate.js"/>
             <path path="./lib/util.js"/>
             <path path="./public/cloudyrun.js"/>
@@ -34,6 +35,7 @@
             <path path="./public/jasmine/jasmine.js"/>
             <path path="./public/jasmine/jasmine-html.js"/>
             <path path="./public/jasmine/jasmine-json.js"/>
+            <path path="./public/jasmine/jasmine-taobao.js"/>
             <path path="./public/jasmine/event-simulate.js"/>
             <path path="./lib/util.js"/>
             <path path="./public/cloudyrun.js"/>

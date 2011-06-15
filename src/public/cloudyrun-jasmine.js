@@ -44,6 +44,7 @@ util.extend(CloudyRun, {
                 return;
             }
 
+            console.log(jp.results);
             self._collectJasmine(jp.results);
         })();
     },
