@@ -4,10 +4,12 @@
 
 // More Options: https://github.com/LearnBoost/Socket.IO
 var socket = new io.Socket(location.hostname, {
+            transports: ['websocket', 'flashsocket'],
             connectTimeout: 10000,
             reconnect: true,
             reconnectionDelay: 5,
-            maxReconnectionAttempts: 10000
+            maxReconnectionAttempts: 1000000,
+            rememberTransport: false
         });
 
 socket.base = {
