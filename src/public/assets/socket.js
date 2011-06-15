@@ -9,7 +9,7 @@ var socket = new io.Socket(location.hostname, {
             reconnect: true,
             reconnectionDelay: 5,
             maxReconnectionAttempts: 1000000,
-            rememberTransport: false
+            rememberTransport: true
         });
 
 socket.base = {
