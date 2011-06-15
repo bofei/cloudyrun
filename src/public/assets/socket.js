@@ -2,14 +2,16 @@
 // Socket Connect
 //----------------------------------------------------------------------------
 
+var WEB_SOCKET_SWF_LOCATION = '/assets/socket.io/lib/vendor/web-socket-js/WebSocketMain.swf';
+
 // More Options: https://github.com/LearnBoost/Socket.IO
 var socket = new io.Socket(location.hostname, {
-            transports: ['websocket', 'flashsocket', 'xhr-polling'],
+            transports: ['websocket', 'flashsocket'],
             connectTimeout: 10000,
             reconnect: true,
             reconnectionDelay: 5,
             maxReconnectionAttempts: 1000000,
-            rememberTransport: true
+            rememberTransport: false
         });
 
 socket.base = {
