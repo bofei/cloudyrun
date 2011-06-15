@@ -3199,7 +3199,6 @@ jasmine.JSONReporter.prototype.reportSpecResults = function(spec) {
         var eventType = options.eventType || 'click';
         var delay     = options.delay || 100;
 
-
         describe(suite, function() {
             jQuery(triggers).each(function(i, trigger) {
                 if ($(trigger).hasClass('disable')) return;
@@ -4327,6 +4326,8 @@ util.extend(CloudyRun, {
             })();
         } else if (util.isFunction(files)) {
             files();
+            run();
+        } else {
             run();
         }
     }
