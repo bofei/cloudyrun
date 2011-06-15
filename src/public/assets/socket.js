@@ -4,7 +4,7 @@
 
 // More Options: https://github.com/LearnBoost/Socket.IO
 var socket = new io.Socket(location.hostname, {
-            transports: ['websocket', 'flashsocket'],
+            transports: ['websocket', 'flashsocket', 'xhr-polling'],
             connectTimeout: 10000,
             reconnect: true,
             reconnectionDelay: 5,
