@@ -4346,6 +4346,8 @@ util.extend(CloudyRun, {
     var index = path.lastIndexOf('/');
     path = path.slice(0, index);
 
-    $('<link rel="stylesheet" href="'+path+'/cloudyrun-jasmine-pkg.css" />').appendTo('body');
+    $(document).ready(function() {
+        $('<link rel="stylesheet" href="'+path+'/cloudyrun-jasmine-pkg.css" />').appendTo('body');
+    });
 
 })();
