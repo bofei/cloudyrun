@@ -19,6 +19,10 @@
 
     function _buildPath(path) {
 
+        if (path.indexOf('http://') === 0) {
+            return path;
+        }
+
         var base = '/p/cloudy/1.0/spec/', ret = [],
             get = function(a, b) {
                 // spec completion
