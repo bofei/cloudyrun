@@ -6,7 +6,7 @@ var WEB_SOCKET_SWF_LOCATION = '/assets/socket.io/lib/vendor/web-socket-js/WebSoc
 
 // More Options: https://github.com/LearnBoost/Socket.IO
 var socket = new io.Socket(location.hostname, {
-            transports: ['websocket', 'flashsocket', 'xhr-polling'],
+            transports: ['websocket', 'flashsocket', 'htmlfile', 'xhr-polling'],
             connectTimeout: 5000,
             reconnect: true,
             reconnectionDelay: 500,
