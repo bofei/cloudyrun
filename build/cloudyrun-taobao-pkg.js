@@ -605,7 +605,11 @@ var util = {
                             content = result['result'];
                         } catch(e) {}
 
-                        ret += '<p class="browser browser-'+status+'"><span>'+results[i].browser+'</span><b title="'+content+'">'+status+'</b></p>';
+                        if (status) {
+                            ret += '<p class="browser browser-'+status+'"><span>'+results[i].browser+'</span><b title="'+content+'">'+status+'</b></p>';
+                        } else {
+                            ret += '<p class="js"><span>'+results[i].browser+'</span><b>'+content+'</b></p>';
+                        }
                     }
                     ret += '<p class="detail"><a href="/task/'+t.taskId+'" target="_blank">View Details&gt;&gt;</a></p>';
                     return ret;

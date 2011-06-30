@@ -10,7 +10,7 @@
             <path path="./src/public/libs/jquery-1.5.2.min.js"/>
             <path path="./src/public/libs/json2.js"/>
             <path path="./src/public/libs/underscore-min.js"/>
-            <path path="./src/util.js"/>
+            <path path="./src/public/util.js"/>
             <path path="./src/public/cloudyrun/cloudyrun.js"/>
         </concat>
         <concat destfile="./build/cloudyrun-jasmine-pkg.js" encoding="utf-8" outputencoding="utf-8">

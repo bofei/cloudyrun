@@ -145,6 +145,7 @@ h1 sup {
     color: #fff;
 }
 p.js {
+    clear: both;
     height: 22px;
     line-height: 22px;
     overflow: hidden;

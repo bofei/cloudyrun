@@ -37,6 +37,21 @@ $(document).keydown(function(e) {
     }
 });
 
+$(document).ready(function() {
+    var command = location.href.split('?command=')[1];
+    var count = 0;
+    if (command) {
+        (function() {
+            if ($('#browser-list b').length > 0) {
+                $('#command').val(decodeURIComponent(command));
+                $('#frm').submit();
+            } else if (++count < 40) {
+                setTimeout(arguments.callee, 200);
+            }
+        })();
+    }
+});
+
 
 //////////////////////////////////////////////////////////////////
 // Methods
