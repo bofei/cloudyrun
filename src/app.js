@@ -2,7 +2,7 @@
 // Global
 
 global._ = require('underscore');
-global.util = require('./util');
+global.util = require('./public/util');
 global.uuid = require('node-uuid');
 global.log = function(msg, type) {
     type = type || 'log';
