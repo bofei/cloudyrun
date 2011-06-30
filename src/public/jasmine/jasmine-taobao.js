@@ -3,7 +3,9 @@
 
     var $ = jQuery;
 
-    jasmine.taobao = {};
+    jasmine.taobao = {
+        config: {}
+    };
     jasmine.taobao.slide = function(suite, container, options) {
         if (!suite || !(container=$(container)[0])) return;
 
@@ -83,6 +85,46 @@
         };
     })();
 
+    jasmine.getLayout = function(i, e) {
+        var exclude = [];
+        $.each(e, function() {
+            $($.trim(this)).each(function() {
+                if ($.inArray(this, exclude) === -1) {
+                    exclude.push(this);
+                }
+            });
+        });
+
+        var data = {};
+        $.each(i, function() {
+            $($.trim(this)).each(function() {
+                if ($.inArray(this, exclude) > -1) {
+                    return '';
+                }
+
+                if (/div|header|section|aside|article|footer|dl|ul|ol|p|h1|h2|h3|h4|h5/i.test(this.nodeName) &&
+                    $.css(this, 'visibility') != 'hidden' &&
+                    $.css(this, 'display') != 'none') {
+                    var selector = $(this).getPath();
+                    util.log(this);
+                    util.log(selector);
+                    var l = getLayout(selector);
+                    if (l) {
+                        data[selector] = l;
+                    }
+                }
+            });
+        });
+
+        try {
+            data = JSON.stringify(data);
+        } catch(e) {
+            data = 'json parsing error!';
+        }
+
+        return data;
+    };
+
     // Extend jasmine.
     jQuery.extend(jasmine.Matchers.prototype, {
 
@@ -132,6 +174,36 @@
                     return propVal >= val;
             }
             return false;
+        },
+
+        toEqualLayout: function(diff) {
+            var d = JSON.parse(this.actual);
+            var failed = [];
+
+            diff = diff || {};
+            if (typeof diff === 'string') {
+                diff = {'width':diff,'height':diff,'left':diff,'top':diff};
+            }
+
+            for (var selector in d) {
+                var el = $(selector)[0];
+                if (!el) {
+                    util.log('element not found: ' + selector);
+                    continue;
+                }
+                var currentLayout = getLayout(el);
+                if (currentLayout) {
+                    var compareResult = compare(currentLayout, d[selector], selector, diff);
+                    if (compareResult !== true) {
+                        failed.push(compareResult);
+                    }
+                }
+            }
+
+            if (failed.length > 0) {
+                throw new Error(failed.join('\n'));
+            }
+            return true;
         }
     });
 
@@ -193,5 +265,74 @@
         return true;
     };
 
+    function compare(current, origin, selector, diff) {
+        // console.log(JSON.stringify(current) + ' vs. ' + JSON.stringify(origin));
+
+        // check
+        var props = ['width', 'left', 'height', 'top'];
+        var i;
+        for (i=0; i<props.length; i++) {
+            if (!(props[i] in current) || !(props[i] in origin)) return;
+        }
+
+        // 100% w
+        if (current.width === '100%' && origin.width === '100%') {
+            // remove width & height
+            props.splice(0, 2);
+        }
+
+        // compare props
+        for (i=0; i<props.length; i++) {
+            var c = current[props[i]];
+            var o = origin[props[i]];
+            if (Math.abs(c-o) > (diff[props[i]] || 0)) {
+                return selector + ' ' + props[i] + ' diff: ' + (c-o);
+            }
+        }
+
+        return true;
+    }
+
+    function getLayout(selector) {
+        var el     = $(selector)[0];
+        var offset = $(el).offset();
+        var width  = $(el).width();
+        var height = $(el).height();
+        // var docWidth = $(document).width();
+        var docWidth = document.documentElement.clientWidth;
+
+        if (width === 0 || height === 0) return;
+
+        return {
+            left:   Math.ceil(offset.left - docWidth/2),
+            top:    offset.top,
+            width:  width === docWidth ? '100%' : width,
+            height: height
+        };
+    }
+
+    jQuery.fn.getPath = function () {
+        var path, node = this;
+        if (node[0].id) {
+            return '#'+node[0].id;
+        }
+        while (node.length) {
+            var realNode = node[0], name = realNode.localName;
+            if (!name) break;
+            name = name.toLowerCase();
+
+            var parent = node.parent();
+
+            var siblings = parent.children(name);
+            if (siblings.length > 1) {
+                name += ':eq(' + siblings.index(realNode) + ')';
+            }
+
+            path = name + (path ? '>' + path : '');
+            node = parent;
+        }
+
+        return path;
+    };
 
 })();

@@ -3,12 +3,13 @@ html
 
   head
     meta(charset='utf-8')
-    title CloudyRun:Proxy
+    title CloudyRun - Proxy
   body
     script
         setTimeout(function() {
         try {
             var taskId = location.href.split('taskId=')[1].split('&')[0];
-            parent.parent.jQuery('#'+taskId).remove();
+            top.jQuery('#'+taskId).remove();
         } catch(e) {}
         }, 1000);
+

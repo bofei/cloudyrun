@@ -1,0 +1,32 @@
+<project name="cloudyrun.build" default="concat" basedir=".">
+
+    <description>CloudyRun Build File</description>
+
+    <target name="concat">
+        <concat destfile="./build/cloudyrun-jasmine-pkg.css" encoding="utf-8" outputencoding="utf-8">
+            <path path="./src/public/jasmine/jasmine.css"/>
+        </concat>
+        <concat destfile="./build/cloudyrun-pkg.js" encoding="utf-8" outputencoding="utf-8">
+            <path path="./src/public/libs/jquery-1.5.2.min.js"/>
+            <path path="./src/public/libs/json2.js"/>
+            <path path="./src/public/libs/underscore-min.js"/>
+            <path path="./src/util.js"/>
+            <path path="./src/public/cloudyrun/cloudyrun.js"/>
+        </concat>
+        <concat destfile="./build/cloudyrun-jasmine-pkg.js" encoding="utf-8" outputencoding="utf-8">
+            <path path="./build/cloudyrun-pkg.js"/>
+            <path path="./src/public/jasmine/jasmine.js"/>
+            <path path="./src/public/jasmine/jasmine-html.js"/>
+            <path path="./src/public/jasmine/jasmine-json.js"/>
+            <path path="./src/public/jasmine/event-simulate.js"/>
+            <path path="./src/public/cloudyrun/cloudyrun-jasmine.js"/>
+        </concat>
+        <concat destfile="./build/cloudyrun-taobao-pkg.js" encoding="utf-8" outputencoding="utf-8">
+            <path path="./build/cloudyrun-jasmine-pkg.js"/>
+            <path path="./src/public/jasmine/jasmine-taobao.js"/>
+            <path path="./src/public/jasmine/jasmine-taobao-login.js"/>
+            <path path="./src/public/cloudyrun/cloudyrun-jasmine-loader-taobao.js"/>
+        </concat>
+    </target>
+
+</project>

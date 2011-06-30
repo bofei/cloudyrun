@@ -1,76 +1,74 @@
-!!! 5
+!!!5
 html
-
   head
     meta(charset='utf-8')
-    title CloudyRun:Console
-    link(rel='stylesheet', href='/assets/reset.css')
-    link(rel='stylesheet', href='/assets/console.css')
+    title CloudyRun - Console
+    link(rel='stylesheet', href='/console.css')
     script
-        g_config = {
-            type: 'console'
-        };
+      g_config = {
+        type: 'console'
+      };
   body
     #main
-        h1 CloudyRun
-            sup V 0.3
-        #input
-            .input
-                form#frm
-                    input(id='command', name='command', value='', autocomplete='off')
-                    button(type='submit', style='display:none') Send Message
-            #browser-list
-        #output
-            .task.task-help
-                h3 :help
-                .task-bd
-                    p.js
-                        span :run &lt;url&gt;
-                        b 让客户端浏览器打开一个页面，并在跑完测试后将结果发送回服务端。
-                    p.js
-                        span :clear
-                        b 清空任务列表
-                    p.tips
-                        更多说明详见
-                        a(href='http://wiki.ued.taobao.net/doku.php?id=user:yunqian:test:guide', target='_blank') wiki
-                        ，有问题或建议请联系<b>云谦</b>。
-
+      h1 CloudyRun
+        sup V 0.3
+      #input
+        .input
+        form#frm
+          input(id='command', name='command', value='', autocomplete='off')
+            button(type='submit', style='display:none') Send Message
+        #browser-list
+      #output
+        .task.task-help
+          h3 :help
+          .task-bd
+            p.js
+              span :run &lt;url&gt;
+              b 让客户端浏览器打开一个页面，并在跑完测试后将结果发送回服务端。
+            p.js
+              span :clear
+              b 清空任务列表
+            p.tips
+              更多说明详见
+              a(href='https://github.com/sorrycc/cloudyrun/', target='_blank') wiki
+              ，有问题或建议请联系 <b>云谦</b> &lt;sorrycc#gmail.com&gt;。
+      #queue
     #group
-        #group-hd
-          a(href='#', class='group-list') GroupList
-          a(href='#', class='group-add')  GroupAdd
-        #group-bd
-        #group-form-fragment
-            div
-              label Group Name：
-              input(name='groupname', size=50)
-              &nbsp;&nbsp;<span style="color:red;">*</span>
-            div
-              label#commands-label Commands：
-              input(name='commands', size=50)
-              a(href="#", class="command-remove") remove
-              input(name='commands', size=50)
-              a(href="#", class="command-remove") remove
-              br
-              a(href="#", class="command-add") add
-            div
-              label runDate：
-              input(name='runHour',size=2)
-              小时&nbsp;
-              input(name='runMinite',size=2)
-              分钟
-            div
-              label Mail：
-              textarea(name='mail', cols=80, rows=3)
-            div
-              input(type='hidden', name='groupId')
-              button(type='submit') submit
-
-    script(src='/assets/Socket.IO/socket.io.min.js')
-    script(src='/assets/jquery-1.5.2.min.js')
+      #group-hd
+        a(href='#', class='group-list') GroupList
+        a(href='#', class='group-add')  GroupAdd
+      #group-bd
+      #group-form-fragment
+        div
+          label Group Name：
+          input(name='groupname', size=50)
+          &nbsp;&nbsp;<span style="color:red;">*</span>
+        div
+          label#commands-label Commands：
+          input(name='commands', size=50)
+          a(href="#", class="command-remove") remove
+          input(name='commands', size=50)
+          a(href="#", class="command-remove") remove
+          br
+          a(href="#", class="command-add") add
+        div
+          label runDate：
+          input(name='runHour',size=2)
+          小时&nbsp;
+          input(name='runMinite',size=2)
+          分钟
+        div
+          label Mail：
+          textarea(name='mail', cols=80, rows=3)
+        div
+          input(type='hidden', name='groupId')
+          button(type='submit') submit
+                        
+    script(src='/socket.io/socket.io.js')
+    script(src='/libs/jquery-1.5.2.min.js')
+    script(src='/libs/json2.js')
+    script(src='/libs/underscore-min.js')
+    script(src='/libs/mustache.js')
     script(src='/util.js')
-    script(src='/assets/json2.js')
-    script(src='/assets/socket.js')
-    script(src='/assets/mustache.js')
-    script(src='/assets/console.js')
-
+    script(src='/socket.js')
+    script(src='/console.js')

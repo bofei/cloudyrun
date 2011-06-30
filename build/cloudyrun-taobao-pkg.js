@@ -493,6 +493,281 @@ if (!JSON) {
         };
     }
 }());
+// Underscore.js 1.1.6
+// (c) 2011 Jeremy Ashkenas, DocumentCloud Inc.
+// Underscore is freely distributable under the MIT license.
+// Portions of Underscore are inspired or borrowed from Prototype,
+// Oliver Steele's Functional, and John Resig's Micro-Templating.
+// For all details and documentation:
+// http://documentcloud.github.com/underscore
+(function(){var p=this,C=p._,m={},i=Array.prototype,n=Object.prototype,f=i.slice,D=i.unshift,E=n.toString,l=n.hasOwnProperty,s=i.forEach,t=i.map,u=i.reduce,v=i.reduceRight,w=i.filter,x=i.every,y=i.some,o=i.indexOf,z=i.lastIndexOf;n=Array.isArray;var F=Object.keys,q=Function.prototype.bind,b=function(a){return new j(a)};typeof module!=="undefined"&&module.exports?(module.exports=b,b._=b):p._=b;b.VERSION="1.1.6";var h=b.each=b.forEach=function(a,c,d){if(a!=null)if(s&&a.forEach===s)a.forEach(c,d);else if(b.isNumber(a.length))for(var e=
+0,k=a.length;e<k;e++){if(c.call(d,a[e],e,a)===m)break}else for(e in a)if(l.call(a,e)&&c.call(d,a[e],e,a)===m)break};b.map=function(a,c,b){var e=[];if(a==null)return e;if(t&&a.map===t)return a.map(c,b);h(a,function(a,g,G){e[e.length]=c.call(b,a,g,G)});return e};b.reduce=b.foldl=b.inject=function(a,c,d,e){var k=d!==void 0;a==null&&(a=[]);if(u&&a.reduce===u)return e&&(c=b.bind(c,e)),k?a.reduce(c,d):a.reduce(c);h(a,function(a,b,f){!k&&b===0?(d=a,k=!0):d=c.call(e,d,a,b,f)});if(!k)throw new TypeError("Reduce of empty array with no initial value");
+return d};b.reduceRight=b.foldr=function(a,c,d,e){a==null&&(a=[]);if(v&&a.reduceRight===v)return e&&(c=b.bind(c,e)),d!==void 0?a.reduceRight(c,d):a.reduceRight(c);a=(b.isArray(a)?a.slice():b.toArray(a)).reverse();return b.reduce(a,c,d,e)};b.find=b.detect=function(a,c,b){var e;A(a,function(a,g,f){if(c.call(b,a,g,f))return e=a,!0});return e};b.filter=b.select=function(a,c,b){var e=[];if(a==null)return e;if(w&&a.filter===w)return a.filter(c,b);h(a,function(a,g,f){c.call(b,a,g,f)&&(e[e.length]=a)});return e};
+b.reject=function(a,c,b){var e=[];if(a==null)return e;h(a,function(a,g,f){c.call(b,a,g,f)||(e[e.length]=a)});return e};b.every=b.all=function(a,c,b){var e=!0;if(a==null)return e;if(x&&a.every===x)return a.every(c,b);h(a,function(a,g,f){if(!(e=e&&c.call(b,a,g,f)))return m});return e};var A=b.some=b.any=function(a,c,d){c||(c=b.identity);var e=!1;if(a==null)return e;if(y&&a.some===y)return a.some(c,d);h(a,function(a,b,f){if(e=c.call(d,a,b,f))return m});return e};b.include=b.contains=function(a,c){var b=
+!1;if(a==null)return b;if(o&&a.indexOf===o)return a.indexOf(c)!=-1;A(a,function(a){if(b=a===c)return!0});return b};b.invoke=function(a,c){var d=f.call(arguments,2);return b.map(a,function(a){return(c.call?c||a:a[c]).apply(a,d)})};b.pluck=function(a,c){return b.map(a,function(a){return a[c]})};b.max=function(a,c,d){if(!c&&b.isArray(a))return Math.max.apply(Math,a);var e={computed:-Infinity};h(a,function(a,b,f){b=c?c.call(d,a,b,f):a;b>=e.computed&&(e={value:a,computed:b})});return e.value};b.min=function(a,
+c,d){if(!c&&b.isArray(a))return Math.min.apply(Math,a);var e={computed:Infinity};h(a,function(a,b,f){b=c?c.call(d,a,b,f):a;b<e.computed&&(e={value:a,computed:b})});return e.value};b.sortBy=function(a,c,d){return b.pluck(b.map(a,function(a,b,f){return{value:a,criteria:c.call(d,a,b,f)}}).sort(function(a,b){var c=a.criteria,d=b.criteria;return c<d?-1:c>d?1:0}),"value")};b.sortedIndex=function(a,c,d){d||(d=b.identity);for(var e=0,f=a.length;e<f;){var g=e+f>>1;d(a[g])<d(c)?e=g+1:f=g}return e};b.toArray=
+function(a){if(!a)return[];if(a.toArray)return a.toArray();if(b.isArray(a))return a;if(b.isArguments(a))return f.call(a);return b.values(a)};b.size=function(a){return b.toArray(a).length};b.first=b.head=function(a,b,d){return b!=null&&!d?f.call(a,0,b):a[0]};b.rest=b.tail=function(a,b,d){return f.call(a,b==null||d?1:b)};b.last=function(a){return a[a.length-1]};b.compact=function(a){return b.filter(a,function(a){return!!a})};b.flatten=function(a){return b.reduce(a,function(a,d){if(b.isArray(d))return a.concat(b.flatten(d));
+a[a.length]=d;return a},[])};b.without=function(a){var c=f.call(arguments,1);return b.filter(a,function(a){return!b.include(c,a)})};b.uniq=b.unique=function(a,c){return b.reduce(a,function(a,e,f){if(0==f||(c===!0?b.last(a)!=e:!b.include(a,e)))a[a.length]=e;return a},[])};b.intersect=function(a){var c=f.call(arguments,1);return b.filter(b.uniq(a),function(a){return b.every(c,function(c){return b.indexOf(c,a)>=0})})};b.zip=function(){for(var a=f.call(arguments),c=b.max(b.pluck(a,"length")),d=Array(c),
+e=0;e<c;e++)d[e]=b.pluck(a,""+e);return d};b.indexOf=function(a,c,d){if(a==null)return-1;var e;if(d)return d=b.sortedIndex(a,c),a[d]===c?d:-1;if(o&&a.indexOf===o)return a.indexOf(c);d=0;for(e=a.length;d<e;d++)if(a[d]===c)return d;return-1};b.lastIndexOf=function(a,b){if(a==null)return-1;if(z&&a.lastIndexOf===z)return a.lastIndexOf(b);for(var d=a.length;d--;)if(a[d]===b)return d;return-1};b.range=function(a,b,d){arguments.length<=1&&(b=a||0,a=0);d=arguments[2]||1;for(var e=Math.max(Math.ceil((b-a)/
+d),0),f=0,g=Array(e);f<e;)g[f++]=a,a+=d;return g};b.bind=function(a,b){if(a.bind===q&&q)return q.apply(a,f.call(arguments,1));var d=f.call(arguments,2);return function(){return a.apply(b,d.concat(f.call(arguments)))}};b.bindAll=function(a){var c=f.call(arguments,1);c.length==0&&(c=b.functions(a));h(c,function(c){a[c]=b.bind(a[c],a)});return a};b.memoize=function(a,c){var d={};c||(c=b.identity);return function(){var b=c.apply(this,arguments);return l.call(d,b)?d[b]:d[b]=a.apply(this,arguments)}};b.delay=
+function(a,b){var d=f.call(arguments,2);return setTimeout(function(){return a.apply(a,d)},b)};b.defer=function(a){return b.delay.apply(b,[a,1].concat(f.call(arguments,1)))};var B=function(a,b,d){var e;return function(){var f=this,g=arguments,h=function(){e=null;a.apply(f,g)};d&&clearTimeout(e);if(d||!e)e=setTimeout(h,b)}};b.throttle=function(a,b){return B(a,b,!1)};b.debounce=function(a,b){return B(a,b,!0)};b.once=function(a){var b=!1,d;return function(){if(b)return d;b=!0;return d=a.apply(this,arguments)}};
+b.wrap=function(a,b){return function(){var d=[a].concat(f.call(arguments));return b.apply(this,d)}};b.compose=function(){var a=f.call(arguments);return function(){for(var b=f.call(arguments),d=a.length-1;d>=0;d--)b=[a[d].apply(this,b)];return b[0]}};b.after=function(a,b){return function(){if(--a<1)return b.apply(this,arguments)}};b.keys=F||function(a){if(a!==Object(a))throw new TypeError("Invalid object");var b=[],d;for(d in a)l.call(a,d)&&(b[b.length]=d);return b};b.values=function(a){return b.map(a,
+b.identity)};b.functions=b.methods=function(a){return b.filter(b.keys(a),function(c){return b.isFunction(a[c])}).sort()};b.extend=function(a){h(f.call(arguments,1),function(b){for(var d in b)b[d]!==void 0&&(a[d]=b[d])});return a};b.defaults=function(a){h(f.call(arguments,1),function(b){for(var d in b)a[d]==null&&(a[d]=b[d])});return a};b.clone=function(a){return b.isArray(a)?a.slice():b.extend({},a)};b.tap=function(a,b){b(a);return a};b.isEqual=function(a,c){if(a===c)return!0;var d=typeof a;if(d!=
+typeof c)return!1;if(a==c)return!0;if(!a&&c||a&&!c)return!1;if(a._chain)a=a._wrapped;if(c._chain)c=c._wrapped;if(a.isEqual)return a.isEqual(c);if(b.isDate(a)&&b.isDate(c))return a.getTime()===c.getTime();if(b.isNaN(a)&&b.isNaN(c))return!1;if(b.isRegExp(a)&&b.isRegExp(c))return a.source===c.source&&a.global===c.global&&a.ignoreCase===c.ignoreCase&&a.multiline===c.multiline;if(d!=="object")return!1;if(a.length&&a.length!==c.length)return!1;d=b.keys(a);var e=b.keys(c);if(d.length!=e.length)return!1;
+for(var f in a)if(!(f in c)||!b.isEqual(a[f],c[f]))return!1;return!0};b.isEmpty=function(a){if(b.isArray(a)||b.isString(a))return a.length===0;for(var c in a)if(l.call(a,c))return!1;return!0};b.isElement=function(a){return!!(a&&a.nodeType==1)};b.isArray=n||function(a){return E.call(a)==="[object Array]"};b.isArguments=function(a){return!(!a||!l.call(a,"callee"))};b.isFunction=function(a){return!(!a||!a.constructor||!a.call||!a.apply)};b.isString=function(a){return!!(a===""||a&&a.charCodeAt&&a.substr)};
+b.isNumber=function(a){return!!(a===0||a&&a.toExponential&&a.toFixed)};b.isNaN=function(a){return a!==a};b.isBoolean=function(a){return a===!0||a===!1};b.isDate=function(a){return!(!a||!a.getTimezoneOffset||!a.setUTCFullYear)};b.isRegExp=function(a){return!(!a||!a.test||!a.exec||!(a.ignoreCase||a.ignoreCase===!1))};b.isNull=function(a){return a===null};b.isUndefined=function(a){return a===void 0};b.noConflict=function(){p._=C;return this};b.identity=function(a){return a};b.times=function(a,b,d){for(var e=
+0;e<a;e++)b.call(d,e)};b.mixin=function(a){h(b.functions(a),function(c){H(c,b[c]=a[c])})};var I=0;b.uniqueId=function(a){var b=I++;return a?a+b:b};b.templateSettings={evaluate:/<%([\s\S]+?)%>/g,interpolate:/<%=([\s\S]+?)%>/g};b.template=function(a,c){var d=b.templateSettings;d="var __p=[],print=function(){__p.push.apply(__p,arguments);};with(obj||{}){__p.push('"+a.replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(d.interpolate,function(a,b){return"',"+b.replace(/\\'/g,"'")+",'"}).replace(d.evaluate||
+null,function(a,b){return"');"+b.replace(/\\'/g,"'").replace(/[\r\n\t]/g," ")+"__p.push('"}).replace(/\r/g,"\\r").replace(/\n/g,"\\n").replace(/\t/g,"\\t")+"');}return __p.join('');";d=new Function("obj",d);return c?d(c):d};var j=function(a){this._wrapped=a};b.prototype=j.prototype;var r=function(a,c){return c?b(a).chain():a},H=function(a,c){j.prototype[a]=function(){var a=f.call(arguments);D.call(a,this._wrapped);return r(c.apply(b,a),this._chain)}};b.mixin(b);h(["pop","push","reverse","shift","sort",
+"splice","unshift"],function(a){var b=i[a];j.prototype[a]=function(){b.apply(this._wrapped,arguments);return r(this._wrapped,this._chain)}});h(["concat","join","slice"],function(a){var b=i[a];j.prototype[a]=function(){return r(b.apply(this._wrapped,arguments),this._chain)}});j.prototype.chain=function(){this._chain=!0;return this};j.prototype.value=function(){return this._wrapped}})();
+
+var util = {
+    
+    /**
+     * ��ȡ�������Ϣ
+     * @param ua {String} navigator.userAgent
+     */
+    getBrowserInfo: function(ua) {
+        var res_m = [/iPad/, /iPhone/, /Android/, /Win/, /Mac/, /Ubunto/, /Linux/];
+        var res_d = [
+            /MS(?:(IE) ([0-9]\.[0-9]))/,
+            /(Chrome)\/([0-9]+\.[0-9]+)/,
+            /(Firefox)\/([0-9a-z\.]+)/,
+            /(Opera).*Version\/([0-9]+\.[0-9]+)/,
+            /Version\/([0-9]+\.[0-9]+).*(Safari)/
+        ];
+
+        for (var i=0; i<res_d.length; i++) {
+            var md = ua.match(res_d[i]);
+            if (!md) continue;
+
+            var result = md.slice(1);
+            if (md.toString().indexOf('Safari') >= 0) {
+                result = [result[1], result[0]];
+            }
+            for (var j=0; j<res_m.length; j++) {
+                var mm = ua.match(res_m[j]);
+                if (mm && mm[0]) {
+                    result.push('_'+mm[0]+'');
+                    break;
+                }
+            }
+            return result.join('').replace(/\./g, '').replace('0_', '_')
+                    .replace('_Win', '');
+        }
+    },
+
+    /**
+     * Get Task Info From Command
+     * @param command {String}
+     */
+    getTaskInfo: function(command) {
+        // TODO: get typeInfo from plugins
+        var typeInfos = {
+            'execScript': {
+                run: function(data) {
+                    var result;
+                    try {
+                        result = Client.run(data.commandBody);
+                    } catch(e) {
+                        result = '[script error] ' + e.message;
+                    }
+                    log('execScript result: ' + result);
+                    emit('updateTask', _.extend(data, {
+                        result: result
+                    }));
+                },
+                getResults: function(results) {
+                    var ret = '';
+                    for (var i=0; i<results.length; i++) {
+                        ret += '<p class="js"><span>'+results[i].browser+'</span><b>'+results[i].result+'</b></p>';
+                    }
+                    return ret;
+                }
+            },
+            'runTest': {
+                queue: true,
+                run: function(data) {
+                    if (data.commandBody.indexOf('http') !== 0) {
+                        data.commandBody = 'http://' + data.commandBody;
+                    }
+                    Client.iframe(data.commandBody, {
+                        'taskId': data.taskId
+                    });
+                },
+                getResults: function(results, t) {
+                    var ret = '';
+                    for (var i=0; i<results.length; i++) {
+                        var status = 'running';
+                        var content = '';
+                        try {
+                            var result = JSON.parse(results[i].result);
+                            status = result['status'];
+                            content = result['result'];
+                        } catch(e) {}
+
+                        ret += '<p class="browser browser-'+status+'"><span>'+results[i].browser+'</span><b title="'+content+'">'+status+'</b></p>';
+                    }
+                    ret += '<p class="detail"><a href="/task/'+t.taskId+'" target="_blank">View Details&gt;&gt;</a></p>';
+                    return ret;
+                }
+            }
+        };
+        // alias
+        typeInfos.run = typeInfos.runTest;
+
+        var m = command.match(/^\:([^\s]+)\s+(.+)/);
+        var taskType = 'execScript';
+        var commandBody = command;
+
+        if (m) {
+            taskType = m[1];
+            commandBody = m[2];
+        }
+
+        var ret = _.extend({}, typeInfos[taskType], {
+            taskType: taskType,
+            commandBody: commandBody
+        });
+        return ret;
+    },
+
+    extend: function() {
+        var target = arguments[0];
+        for (var i=1; i<arguments.length; i++) {
+            var o = arguments[i];
+            if (o) {
+                for (var k in o) {
+                    target[k] = o[k];
+                }
+            }
+        }
+        return target;
+    },
+    
+    isFunction: function(o) {
+        return ({}).toString.call(o) === '[object Function]';
+    },
+    isObject: function(o) {
+        return ({}).toString.call(o) === '[object Object]';
+    },
+    isArray: function(o) {
+        return ({}).toString.call(o) === '[object Array]';
+    },
+    isString: function(o) {
+        return ({}).toString.call(o) === '[object String]';
+    }
+
+};
+
+if (typeof module !== 'undefined') {
+    module.exports = util;
+}
+/**
+ * @depends jQuery, util.js
+ */
+
+var CloudyRun = {
+    version: '0.2'
+};
+
+(function() {
+
+    window.CloudyRun = {};
+    var $ = jQuery;
+
+    util.extend(CloudyRun, {
+
+        _config: {},
+
+        _init: function() {
+            var url = location.href;
+            try {
+                util.extend(this._config, {
+                    taskId: decodeURIComponent(url.split('taskId=')[1].split('&')[0]),
+                    server: decodeURIComponent(url.split('server=')[1].split('&')[0]),
+                    sessionId: decodeURIComponent(url.split('sessionId=')[1].split('&')[0]),
+                    browser: decodeURIComponent(url.split('browser=')[1].split('&')[0])
+                });
+            } catch(e) {}
+        },
+
+        /**
+         * post 数据到 server
+         * @param server {String}
+         * @param data {Object}
+         */
+        _post: function(server, data) {
+            if (!util.isObject(data)) {
+                util.log('[error] post failed: data id not an Object!');
+                return;
+            }
+
+            var id = 'formPost_'+(+new Date());
+            var form = $('<form target='+id+' action="'+server+'" method="post"></form>');
+            var iframe = $('<iframe name='+id+' id='+id+' style="display:none;"></iframe>');
+
+            for (var k in data) {
+                var hidden = $('<input type="hidden" name="'+k+'" value="'+data[k]+'" />');
+                hidden.appendTo(form);
+            }
+
+            form.appendTo('body');
+            iframe.appendTo('body');
+            form.submit();
+        },
+
+        /**
+         * 配置属性
+         * @param options {Object}
+         */
+        config: function(options) {
+            for (var k in options) {
+                this._config[k] = options[k];
+            }
+        },
+
+        /**
+         * 发送结果到服务器
+         * @param data {String|Object}
+         */
+        sendResult: function(data) {
+            if (util.isString(data)) {
+                data = {
+                    'result': data
+                };
+            }
+
+            if (typeof data.status !== 'undefined' && data.status !== 'failed') {
+                data.status = data.status ? 'passed' : 'failed';
+            }
+
+            data = util.extend({}, this._config, {
+                result: encodeURIComponent(JSON.stringify(data))
+            });
+            
+            if (self === top && !window.opener) {
+                // data = 'good, please copy and run!<br> <code>:run '+location.href+'</code>';
+                // $('<div style="position:fixed;right:10px;bottom:10px;z-index:1000001;">'+data+'</div>').appendTo('body');
+            } else {
+                var server = this._config.server;
+                this._post(server + 'post', data);
+
+                if (window.opener) {
+                    setTimeout(function() {
+                        window.close();
+                    }, 500);
+                } else {
+                    $('<iframe src="'+server+'proxy?taskId='+this._config.taskId+'"></iframe>').appendTo('body');
+                }
+            }
+        }
+    });
+
+
+    // 初始化 CloudyRun
+    CloudyRun._init();
+
+})();
 /**
  * Top level namespace for Jasmine, a lightweight JavaScript BDD/spec/testing framework.
  *
@@ -3183,203 +3458,7 @@ jasmine.JSONReporter.prototype.reportSpecResults = function(spec) {
     }
     this.results.suites[spec.suite.id].specs.push(_spec);
 };
-
-(function() {
-
-    var $ = jQuery;
-
-    jasmine.taobao = {};
-    jasmine.taobao.slide = function(suite, container, options) {
-        if (!suite || !(container=$(container)[0])) return;
-
-        options = options || {};
-        var triggers  = options.triggers;
-        var content   = options.content || jQuery('.ks-switchable-content', container);
-        var cssProp   = options.cssProp || 'left';
-        var eventType = options.eventType || 'click';
-        var delay     = options.delay || 100;
-
-        describe(suite, function() {
-            jQuery(triggers).each(function(i, trigger) {
-                if ($(trigger).hasClass('disable')) return;
-                it('trigger ' + i, function() {
-                    jasmine.focus(container);
-                    waits(1000);
-                    var origin = $(content).css(cssProp);
-                    jasmine.simulate(trigger, eventType);
-                    waits(delay);
-                    runs(function() {
-                        expect($(content).css(cssProp)).not.toEqual(origin);
-                    });
-                });
-            });
-        });
-    };
-
-    jasmine.taobao.tab = function(suite, container, options) {
-        if (!suite || !(container = $(container)[0])) return;
-
-        options = options || {};
-        var triggers = options.triggers || $('.ks-switchable-nav > *', container);
-        var panels = options.panels || $('.ks-switchable-content > *', container);
-        var eventType = options.eventType || 'click';
-        var delay     = options.delay || 100;
-
-        describe(suite, function() {
-            jQuery(triggers).each(function(i, trigger) {
-                it('trigger ' + i, function() {
-                    jasmine.focus(container);
-                    waits(1000);
-                    jasmine.simulate(trigger, eventType);
-                    waits(delay);
-                    runs(function() {
-                        expect(panels[i].style.display).not.toEqual('none');
-                    });
-                });
-            });
-        });
-    };
-
-    jasmine.focus = (function() {
-        var line;
-
-        return function(el) {
-            if (!(el = $(el)[0])) return;
-
-            el.scrollIntoView();
-
-            var offset = $(el).offset();
-            var width = $(el).width();
-            var height = $(el).height();
-
-            if (!line) {
-                line = jQuery('<div>').css({
-                    position: 'absolute',
-                    border: '2px solid red',
-                    zIndex: 9999
-                }).appendTo('body');
-            }
-            line.css({
-                'left':   offset.left,
-                'top':    offset.top,
-                'width':  width - 4,
-                'height': height - 4
-            });
-        };
-    })();
-
-    // Extend jasmine.
-    jQuery.extend(jasmine.Matchers.prototype, {
-
-        // Horizontal layout test.
-        toHorizontalEqual: function() {
-            // console.log(this.actual);
-            return equal(this.actual, ['top', 'height']);
-        },
-        toHorizontalTopAlign: function() {
-            return equal(this.actual, ['top']);
-        },
-        toHorizontalBottomAlign: function() {
-            return equal(this.actual, ['top+height']);
-        },
-
-        // Vertical layout test.
-        toVerticalEqual: function() {
-            return equal(this.actual, ['left', 'width']);
-        },
-        toVerticalLeftAlign: function() {
-            return equal(this.actual, ['left']);
-        },
-        toVerticalRightAlign: function() {
-            return equal(this.actual, ['left+width']);
-        },
-
-        // Prop test.
-        isCSSProp: function(prop, compare, val) {
-            var propVal = jQuery(this.actual).css(prop);
-            if (/^\d+/.test(propVal)) {
-                propVal = parseInt(propVal, 10);
-                val = parseInt(val, 10);
-            }
-            switch (compare) {
-                case '=':
-                case '==':
-                    return propVal == val;
-                case '===':
-                    return propVal === val;
-                case '<':
-                    return propVal < val;
-                case '>':
-                    return propVal > val;
-                case '<=':
-                    return propVal <= val;
-                case '>=':
-                    return propVal >= val;
-            }
-            return false;
-        }
-    });
-
-
-    ///////////////////////////////////////////////////////////////
-    // Helpers
-
-    // Get el's left, top, width, height, and so on..
-    var offset = function(el) {
-        var data = jQuery.data(el, 'offset');
-        if (!data) {
-            var e = jQuery(el),
-                f = e.offset(), w = e.width(), h = e.height();
-            data = {
-                'left':       f.left,
-                'top':        f.top,
-                'width':      w,
-                'height':     h,
-                'left+width': f.left + w,
-                'top+height': f.top + h
-            };
-            jQuery.data(el, 'offset', data);
-        }
-        return data;
-    };
-
-    // Compare el's offset.
-    var equal = function(els, opts) {
-        var cache = {},
-            i, j,
-            notexsit = function() {
-                for (j=0; j<opts.length; j++) {
-                    if (!cache[opts[j]]) return true;
-                }
-                return false;
-            },
-            notequal = function(os) {
-                for (j=0; j<opts.length; j++) {
-                    if (os[opts[j]] !== cache[opts[j]]) return true;
-                }
-                return false;
-            };
-
-        for (i=0; i<els.length; i++) {
-            var os = offset(jQuery(els[i]).get(0));
-
-            if (notexsit()) {
-                for (j=0; j<opts.length; j++) {
-                    cache[opts[j]] = os[opts[j]];
-                }
-                continue;
-            }
-
-            if (notequal(os)) {
-                return false;
-            }
-        }
-
-        return true;
-    };
-
-
-})();/**
+/**
  * Synthetic DOM Events for Jasmine
  * @origin https://github.com/yui/yui3/raw/master/src/event-simulate/js/event-simulate.js
  * @porter lifesinger@gmail.com
@@ -3973,285 +4052,6 @@ jasmine.JSONReporter.prototype.reportSpecResults = function(spec) {
         }
     };
 })();
-
-var util = {
-
-    /**
-     * Log Message
-     * @param msg {String}
-     */
-    log: function(msg) {
-        if (typeof console !== 'undefined') {
-            try {
-                if (process.argv.indexOf('nolog') === -1) {
-                    if (msg.indexOf('send message to') > -1 ||
-                        msg.indexOf('send content') > -1 ||
-                        msg.indexOf('message getted') > -1) {
-                        return;
-                    }
-                    console.log(msg);
-                }
-            } catch(e) {
-                console.log(msg);
-            }
-        }
-    },
-
-    /**
-     * 扩展对象
-     */
-    extend: function() {
-        var target = arguments[0];
-        for (var i=1; i<arguments.length; i++) {
-            var o = arguments[i];
-            if (o) {
-                for (var k in o) {
-                    target[k] = o[k];
-                }
-            }
-        }
-        return target;
-    },
-
-    /**
-     * 获取浏览器信息
-     * @param ua {String} navigator.userAgent
-     */
-    getBrowserInfo: function(ua) {
-        var res_m = [/iPad/, /iPhone/, /Android/, /Win/, /Mac/, /Ubunto/, /Linux/];
-        var res_d = [
-            /MS(?:(IE) ([0-9]\.[0-9]))/,
-            /(Chrome)\/([0-9]+\.[0-9]+)/,
-            /(Firefox)\/([0-9a-z\.]+)/,
-            /(Opera).*Version\/([0-9]+\.[0-9]+)/,
-            /Version\/([0-9]+\.[0-9]+).*(Safari)/
-        ];
-
-        for (var i=0; i<res_d.length; i++) {
-            var md = ua.match(res_d[i]);
-            if (!md) continue;
-
-            var result = md.slice(1);
-            if (md.toString().indexOf('Safari') >= 0) {
-                result = [result[1], result[0]];
-            }
-            for (var j=0; j<res_m.length; j++) {
-                var mm = ua.match(res_m[j]);
-                if (mm && mm[0]) {
-                    result.push('_'+mm[0]+'');
-                    break;
-                }
-            }
-            return result.join('').replace(/\./g, '').replace('0_', '_')
-                    .replace('_Win', '');
-        }
-    },
-
-    /**
-     * 获取房间号信息
-     * http://a.com/console/room/foo?a=b  => foo
-     * http://a.com/client/room/foo/bar   => foo
-     */
-    getRoom: function() {
-        var room;
-        try {
-            room = location.href.split('room/')[1].split('/')[0].split('?')[0];
-        } catch(e) {}
-        return room;
-    }
-};
-
-util.extend(util, {
-    isFunction: function(o) {
-        return ({}).toString.call(o) === '[object Function]';
-    },
-    isObject: function(o) {
-        return ({}).toString.call(o) === '[object Object]';
-    },
-    isArray: function(o) {
-        return ({}).toString.call(o) === '[object Array]';
-    },
-    isString: function(o) {
-        return ({}).toString.call(o) === '[object String]';
-    }
-});
-
-(function() {
-
-    function addFns(template, data){
-        var ifs = getConditions(template);
-        var key = "";
-        for (var i = 0; i < ifs.length; i++) {
-            key = "if(" + ifs[i] + ")";
-            if (data[key]) {
-                continue;
-            }
-            else {
-                data[key] = buildFn(ifs[i]);
-            }
-        }
-    }
-    function getConditions(template){
-        var ifregexp_ig = /\{{2,3}[\^#]?if\((.*?)\)\}{2,3}?/ig;
-        var ifregexp_i = /\{{2,3}[\^#]?if\((.*?)\)\}{2,3}?/i;
-        var gx = template.match(ifregexp_ig);
-        var ret = [];
-        if (gx) {
-            for (var i = 0; i < gx.length; i++) {
-                ret.push(gx[i].match(ifregexp_i)[1]);
-            }
-        }
-        return ret;
-    }
-    function buildFn(key){
-        var equal = key.indexOf('==') > -1;
-        if (equal) {
-            key = key.split("==");
-        } else {
-            key = key.split('!=');
-        }
-        
-        var res = function(){
-            var ns = key[0].split("."), value = key[1];
-            var curData = this;
-            for (var i = ns.length - 1; i > -1; i--) {
-                var cns = ns.slice(i);
-                var d = curData;
-                try {
-                    for (var j = 0; j < cns.length - 1; j++) {
-                        d = d[cns[j]];
-                    }
-                    if (cns[cns.length - 1] in d) {
-                        var str = d[cns[cns.length - 1]].toString();
-                        if (equal ? (str === value) : (str !== value)) {
-                            return true;
-                        }
-                        else {
-                            return false;
-                        }
-                    }
-                }
-                catch (err) {
-                }
-            }
-            return false;
-        };
-        return res;
-    }
-    // new to_html for exports
-    function to_html(template, data){
-        addFns(template, data);
-        return Mustache.to_html.apply(this, arguments);
-    }
-
-    util.to_html = to_html;
-
-})();
-
-if (typeof module !== 'undefined') {
-    module.exports = util;
-}
-/**
- * @depends jQuery, util.js
- */
-
-var CloudyRun = {
-    version: '0.2'
-};
-
-(function() {
-
-    window.CloudyRun = {};
-    var $ = jQuery;
-
-    util.extend(CloudyRun, {
-
-        _config: {},
-
-        _init: function() {
-            var url = location.href;
-            try {
-                util.extend(this._config, {
-                    taskId: decodeURIComponent(url.split('taskId=')[1].split('&')[0]),
-                    server: decodeURIComponent(url.split('server=')[1].split('&')[0]),
-                    sessionId: decodeURIComponent(url.split('sessionId=')[1].split('&')[0]),
-                    browser: decodeURIComponent(url.split('browser=')[1].split('&')[0])
-                });
-            } catch(e) {
-                // util.log('[error] taskId or server not specified!');
-            }
-        },
-
-        /**
-         * post 数据到 server
-         * @param server {String}
-         * @param data {Object}
-         */
-        _post: function(server, data) {
-            if (!util.isObject(data)) {
-                util.log('[error] post failed: data id not an Object!');
-                return;
-            }
-
-            var id = 'formPost_'+(+new Date());
-            var form = $('<form target='+id+' action="'+server+'" method="post"></form>');
-            var iframe = $('<iframe name='+id+' id='+id+' style="display:none;"></iframe>');
-
-            for (var k in data) {
-                var hidden = $('<input type="hidden" name="'+k+'" value="'+data[k]+'" />');
-                hidden.appendTo(form);
-            }
-
-            form.appendTo('body');
-            iframe.appendTo('body');
-            form.submit();
-        },
-
-        /**
-         * 配置属性
-         * @param options {Object}
-         */
-        config: function(options) {
-            for (var k in options) {
-                this._config[k] = options[k];
-            }
-        },
-
-        /**
-         * 发送结果到服务器
-         * @param data {String|Object}
-         */
-        sendResult: function(data) {
-            if (util.isString(data)) {
-                data = {
-                    'result': data
-                };
-            }
-
-            if (typeof data.status !== 'undefined' && data.status !== 'failed') {
-                data.status = data.status ? 'passed' : 'failed';
-            }
-
-            data = util.extend({}, this._config, {
-                result: encodeURIComponent(JSON.stringify(data))
-            });
-            
-            if (self === top) {
-                // data = 'good, please copy and run!<br> <code>:run '+location.href+'</code>';
-                // $('<div style="position:fixed;right:10px;bottom:10px;z-index:1000001;">'+data+'</div>').appendTo('body');
-            } else {
-                var server = this._config.server;
-                this._post(server + 'post', data);
-                $('<iframe src="'+server+'proxy?taskId='+this._config.taskId+'"></iframe>').appendTo('body');
-            }
-        }
-    });
-
-
-    // 初始化 CloudyRun
-    CloudyRun._init();
-
-})();
 /**
  * @depends jQuery, util.js, cloudyrun.js, jasmine/*.js
  */
@@ -4302,9 +4102,12 @@ util.extend(CloudyRun, {
         })();
     },
 
-    runJasmine: function(files) {
+    runJasmine: function(files, check) {
         var self = this;
         var run = function() {
+            if (check && !check()) {
+                return;
+            }
             self._runJasmine();
         };
 
@@ -4341,7 +4144,7 @@ util.extend(CloudyRun, {
     var $ = jQuery;
     if ($('link[href*=jasmine]')[0]) return;
 
-    var script = $('script[src*=cloudyrun]')[0];
+    var script = $('script[src*=cloudyrun-]')[0];
     var path = script.src;
     var index = path.lastIndexOf('/');
     path = path.slice(0, index);
@@ -4353,6 +4156,392 @@ util.extend(CloudyRun, {
 })();
 (function() {
 
+    var $ = jQuery;
+
+    jasmine.taobao = {
+        config: {}
+    };
+    jasmine.taobao.slide = function(suite, container, options) {
+        if (!suite || !(container=$(container)[0])) return;
+
+        options = options || {};
+        var triggers  = options.triggers;
+        var content   = options.content || jQuery('.ks-switchable-content', container);
+        var cssProp   = options.cssProp || 'left';
+        var eventType = options.eventType || 'click';
+        var delay     = options.delay || 100;
+
+        describe(suite, function() {
+            jQuery(triggers).each(function(i, trigger) {
+                if ($(trigger).hasClass('disable')) return;
+                it('trigger ' + i, function() {
+                    jasmine.focus(container);
+                    waits(1000);
+                    var origin = $(content).css(cssProp);
+                    jasmine.simulate(trigger, eventType);
+                    waits(delay);
+                    runs(function() {
+                        expect($(content).css(cssProp)).not.toEqual(origin);
+                    });
+                });
+            });
+        });
+    };
+
+    jasmine.taobao.tab = function(suite, container, options) {
+        if (!suite || !(container = $(container)[0])) return;
+
+        options = options || {};
+        var triggers = options.triggers || $('.ks-switchable-nav > *', container);
+        var panels = options.panels || $('.ks-switchable-content > *', container);
+        var eventType = options.eventType || 'click';
+        var delay     = options.delay || 100;
+
+        describe(suite, function() {
+            jQuery(triggers).each(function(i, trigger) {
+                it('trigger ' + i, function() {
+                    jasmine.focus(container);
+                    waits(1000);
+                    jasmine.simulate(trigger, eventType);
+                    waits(delay);
+                    runs(function() {
+                        expect(panels[i].style.display).not.toEqual('none');
+                    });
+                });
+            });
+        });
+    };
+
+    jasmine.focus = (function() {
+        var line;
+
+        return function(el) {
+            if (!(el = $(el)[0])) return;
+
+            el.scrollIntoView();
+
+            var offset = $(el).offset();
+            var width = $(el).width();
+            var height = $(el).height();
+
+            if (!line) {
+                line = jQuery('<div>').css({
+                    position: 'absolute',
+                    border: '2px solid red',
+                    zIndex: 9999
+                }).appendTo('body');
+            }
+            line.css({
+                'left':   offset.left,
+                'top':    offset.top,
+                'width':  width - 4,
+                'height': height - 4
+            });
+        };
+    })();
+
+    jasmine.getLayout = function(i, e) {
+        var exclude = [];
+        $.each(e, function() {
+            $($.trim(this)).each(function() {
+                if ($.inArray(this, exclude) === -1) {
+                    exclude.push(this);
+                }
+            });
+        });
+
+        var data = {};
+        $.each(i, function() {
+            $($.trim(this)).each(function() {
+                if ($.inArray(this, exclude) > -1) {
+                    return '';
+                }
+
+                if (/div|header|section|aside|article|footer|dl|ul|ol|p|h1|h2|h3|h4|h5/i.test(this.nodeName) &&
+                    $.css(this, 'visibility') != 'hidden' &&
+                    $.css(this, 'display') != 'none') {
+                    var selector = $(this).getPath();
+                    util.log(this);
+                    util.log(selector);
+                    var l = getLayout(selector);
+                    if (l) {
+                        data[selector] = l;
+                    }
+                }
+            });
+        });
+
+        try {
+            data = JSON.stringify(data);
+        } catch(e) {
+            data = 'json parsing error!';
+        }
+
+        return data;
+    };
+
+    // Extend jasmine.
+    jQuery.extend(jasmine.Matchers.prototype, {
+
+        // Horizontal layout test.
+        toHorizontalEqual: function() {
+            // console.log(this.actual);
+            return equal(this.actual, ['top', 'height']);
+        },
+        toHorizontalTopAlign: function() {
+            return equal(this.actual, ['top']);
+        },
+        toHorizontalBottomAlign: function() {
+            return equal(this.actual, ['top+height']);
+        },
+
+        // Vertical layout test.
+        toVerticalEqual: function() {
+            return equal(this.actual, ['left', 'width']);
+        },
+        toVerticalLeftAlign: function() {
+            return equal(this.actual, ['left']);
+        },
+        toVerticalRightAlign: function() {
+            return equal(this.actual, ['left+width']);
+        },
+
+        // Prop test.
+        isCSSProp: function(prop, compare, val) {
+            var propVal = jQuery(this.actual).css(prop);
+            if (/^\d+/.test(propVal)) {
+                propVal = parseInt(propVal, 10);
+                val = parseInt(val, 10);
+            }
+            switch (compare) {
+                case '=':
+                case '==':
+                    return propVal == val;
+                case '===':
+                    return propVal === val;
+                case '<':
+                    return propVal < val;
+                case '>':
+                    return propVal > val;
+                case '<=':
+                    return propVal <= val;
+                case '>=':
+                    return propVal >= val;
+            }
+            return false;
+        },
+
+        toEqualLayout: function(diff) {
+            var d = JSON.parse(this.actual);
+            var failed = [];
+
+            diff = diff || {};
+            if (typeof diff === 'string') {
+                diff = {'width':diff,'height':diff,'left':diff,'top':diff};
+            }
+
+            for (var selector in d) {
+                var el = $(selector)[0];
+                if (!el) {
+                    util.log('element not found: ' + selector);
+                    continue;
+                }
+                var currentLayout = getLayout(el);
+                if (currentLayout) {
+                    var compareResult = compare(currentLayout, d[selector], selector, diff);
+                    if (compareResult !== true) {
+                        failed.push(compareResult);
+                    }
+                }
+            }
+
+            if (failed.length > 0) {
+                throw new Error(failed.join('\n'));
+            }
+            return true;
+        }
+    });
+
+
+    ///////////////////////////////////////////////////////////////
+    // Helpers
+
+    // Get el's left, top, width, height, and so on..
+    var offset = function(el) {
+        var data = jQuery.data(el, 'offset');
+        if (!data) {
+            var e = jQuery(el),
+                f = e.offset(), w = e.width(), h = e.height();
+            data = {
+                'left':       f.left,
+                'top':        f.top,
+                'width':      w,
+                'height':     h,
+                'left+width': f.left + w,
+                'top+height': f.top + h
+            };
+            jQuery.data(el, 'offset', data);
+        }
+        return data;
+    };
+
+    // Compare el's offset.
+    var equal = function(els, opts) {
+        var cache = {},
+            i, j,
+            notexsit = function() {
+                for (j=0; j<opts.length; j++) {
+                    if (!cache[opts[j]]) return true;
+                }
+                return false;
+            },
+            notequal = function(os) {
+                for (j=0; j<opts.length; j++) {
+                    if (os[opts[j]] !== cache[opts[j]]) return true;
+                }
+                return false;
+            };
+
+        for (i=0; i<els.length; i++) {
+            var os = offset(jQuery(els[i]).get(0));
+
+            if (notexsit()) {
+                for (j=0; j<opts.length; j++) {
+                    cache[opts[j]] = os[opts[j]];
+                }
+                continue;
+            }
+
+            if (notequal(os)) {
+                return false;
+            }
+        }
+
+        return true;
+    };
+
+    function compare(current, origin, selector, diff) {
+        // console.log(JSON.stringify(current) + ' vs. ' + JSON.stringify(origin));
+
+        // check
+        var props = ['width', 'left', 'height', 'top'];
+        var i;
+        for (i=0; i<props.length; i++) {
+            if (!(props[i] in current) || !(props[i] in origin)) return;
+        }
+
+        // 100% w
+        if (current.width === '100%' && origin.width === '100%') {
+            // remove width & height
+            props.splice(0, 2);
+        }
+
+        // compare props
+        for (i=0; i<props.length; i++) {
+            var c = current[props[i]];
+            var o = origin[props[i]];
+            if (Math.abs(c-o) > (diff[props[i]] || 0)) {
+                return selector + ' ' + props[i] + ' diff: ' + (c-o);
+            }
+        }
+
+        return true;
+    }
+
+    function getLayout(selector) {
+        var el     = $(selector)[0];
+        var offset = $(el).offset();
+        var width  = $(el).width();
+        var height = $(el).height();
+        // var docWidth = $(document).width();
+        var docWidth = document.documentElement.clientWidth;
+
+        if (width === 0 || height === 0) return;
+
+        return {
+            left:   Math.ceil(offset.left - docWidth/2),
+            top:    offset.top,
+            width:  width === docWidth ? '100%' : width,
+            height: height
+        };
+    }
+
+    jQuery.fn.getPath = function () {
+        var path, node = this;
+        if (node[0].id) {
+            return '#'+node[0].id;
+        }
+        while (node.length) {
+            var realNode = node[0], name = realNode.localName;
+            if (!name) break;
+            name = name.toLowerCase();
+
+            var parent = node.parent();
+
+            var siblings = parent.children(name);
+            if (siblings.length > 1) {
+                name += ':eq(' + siblings.index(realNode) + ')';
+            }
+
+            path = name + (path ? '>' + path : '');
+            node = parent;
+        }
+
+        return path;
+    };
+
+})();
+(function() {
+
+    var online = document.domain.indexOf('taobao.com') > -1;
+    var domain = online ? 'taobao.com' : 'taobao.net';
+    var domain2 = online ? 'taobao.com' : 'daily.taobao.net';
+    document.domain = domain;
+
+    jasmine.taobao.login = function(username, password) {
+        _login(username, password);
+    };
+
+    jasmine.taobao.logout = function() {
+        _logout();
+    };
+
+    function _logout() {
+        var img = new Image();
+        img.src = 'http://login.'+domain2+'/member/logout.jhtml?f=top&t='+(+new Date());
+        setTimeout(function() {
+            location.reload();
+        }, 1000);
+    }
+
+    function _login(username, password) {
+        var ifrSrc = 'http://login.'+domain2+'/member/login.jhtml?style=minisimple&from=jianghu' +
+                '&full_redirect=&redirect_url='+encodeURI(location.href);
+        var ifr = $('<iframe src="'+ifrSrc+'" style="background:#fff;position:absolute;left:0;top:0;"></iframe>');
+        ifr.appendTo('body');
+
+        (function() {
+            try {
+                var doc = ifr[0].contentWindow.document;
+                var forms = doc ? doc.getElementsByTagName('form') : null;
+                if (!forms || !forms[0]) {
+                    setTimeout(arguments.callee, 200);
+                    return;
+                }
+
+                forms[0]['TPL_username'].value = username;
+                forms[0]['TPL_password'].value = password;
+                forms[0].submit();
+            } catch(e) {
+                setTimeout(arguments.callee, 200);
+            }
+        })();
+    }
+
+})();
+(function() {
+
+    var $ = jQuery;
     var SPLITER = '__cloudyrun__=';
     var spec;
     try {
@@ -4363,13 +4552,73 @@ util.extend(CloudyRun, {
         return;
     }
 
-    spec = _buildPath(spec);
-    CloudyRun.runJasmine(spec);
+    var nick = getCookie('_nk_');
+    var tracknick = getCookie('tracknick');
+    var isLogin = !!(getCookie('_l_g_') && nick || getCookie('ck1') && trackNick);
+
+    switch(spec) {
+        case 'ui/build':
+            buildLayoutUI();
+            break;
+        default:
+            spec = buildPath(spec);
+            CloudyRun.runJasmine(spec, function() {
+                var loginInfo = jasmine.taobao.config.login;
+                if (loginInfo === false && isLogin) {
+                    jasmine.taobao.logout();
+                    return false;
+                } else if (util.isString(loginInfo) && loginInfo.split(':').length === 2) {
+                    var username = loginInfo.split(':')[0];
+                    var password = loginInfo.split(':')[1];
+                    if (!isLogin || (nick || tracknick) !== username) {
+                        jasmine.taobao.login(username, password);
+                        return false;
+                    }
+                }
+                return true;
+            });
+            break;
+    }
 
 
     ////////// Helper //////////
 
-    function _buildPath(path) {
+    function buildLayoutUI() {
+        var html = '<form draggable=t\rue id="cloudyrun-ui-build-form" style="position:absolute;width:410px;left:50%;background:#fff;' +
+                'margin-left:-210px;top:100px;border:3px solid lightgreen;padding:10px;' +
+                'border-radius:10px;box-shadow:0 0 10px lightgray;z-index:99999;">' +
+                '<h2 style="font:bold 18px/1.5 arial;margin:5px 0 10px;">Get Layout Data</h2>' +
+                '<div><textarea style="width:400px;height:70px;" placeholder="include selector, separated by comma or linebreak"></textarea></div>' +
+                '<div><textarea style="width:400px;height:70px;" placeholder="exclude selector, separated by comma or linebreak"></textarea></div>' +
+                '<div><button type="submit">Build</button></div>' +
+                '<br>' +
+                '<div><textarea style="width:400px;height:120px;" placeholder="output"></textarea></div>' +
+                '</form>';
+        var form = $(html);
+        var textareas = $('textarea', form);
+        var include = textareas[0];
+        var exclude = textareas[1];
+        var output  = textareas[2];
+        $(form).submit(function() {
+            var i = include.value.replace(/,/g, '\n').split('\n');
+            var e = exclude.value.replace(/,/g, '\n').split('\n');
+            e.push('#cloudyrun-ui-build-form > div');
+            output.value = jasmine.getLayout(i, e);
+            return false;
+        });
+
+        form.bind('dragend', function(e) {
+            $(this).css({
+                left: e.pageX,
+                top: e.pageY - $(this).height(),
+                marginLeft: 0,
+                marginTop: 0
+            });
+        });
+        form.appendTo('body');
+    }
+
+    function buildPath(path) {
 
         if (path.indexOf('http://') === 0) {
             return path;
@@ -4423,6 +4672,11 @@ util.extend(CloudyRun, {
         }
 
         return ret;
+    }
+
+    function getCookie(name) {
+        var m = document.cookie.match('(?:^|;)\\s*' + name + '=([^;]*)');
+        return m && m[0] ? decodeURIComponent(m[1]) : '';
     }
 
 })();
