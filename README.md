@@ -11,19 +11,23 @@ CloudyRun is a test driver based on browser clients.
 v0.4
 
 ## ChangeLog
+
 #### v0.4
 - refactor
 - remove room support
 - support run task with url parameter
+
 #### v0.3
 - add group support
 - add mail support
 - add ui test practice for taobao
 - add auto login for taobao
+
 #### v0.2
 - refactor
 - add room support
 - add report view
+
 #### v0.1
 - add command executing support
 - add jasmine test case support
