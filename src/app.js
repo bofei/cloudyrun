@@ -171,7 +171,7 @@ io.sockets
         });
 
         socket.on('runGroup', function(data) {
-            runGroup(data.groupId);
+            runGroup(data.groupId, true);
         });
     
     });
@@ -561,11 +561,11 @@ var saveGroup = function(g, cb) {
 /**
  * @param g {Group|String}
  */
-var runGroup = function(g) {
+var runGroup = function(g, justRun) {
     if (_.isString(g)) {
         var groupId = g;
         getGroupById(groupId, function(g) {
-            g && runGroup(g);
+            g && runGroup(g, justRun);
         });
         return;
     }
@@ -588,6 +588,10 @@ var runGroup = function(g) {
                 'taskIds': taskIds
             });
             saveGroup(g);
+
+            log('-------------------');
+            console.log(justRun);
+            if (justRun) return;
 
             waitTasksComplete(taskIds, function() {
                 getGroupInfoById(g.groupId, function(data) {
