@@ -1,10 +1,10 @@
 ///////////////////////////////////////////////////////////////////
 // Global
 
-global._ = require('underscore');
-global.util = require('./public/util');
-global.uuid = require('node-uuid');
-global.log = function(msg, type) {
+var _ = require('underscore');
+var util = require('./public/util');
+var uuid = require('node-uuid');
+var log = function(msg, type) {
     type = type || 'log';
     console.log(' - ' + type + ': ' + msg);
 };
@@ -37,11 +37,11 @@ mongoose.model('Group', new Schema({
     date:       Date
 }));
 
-global.mongoose = mongoose;
-global.Schema = Schema;
-global.db = mongoose.connect('mongodb://127.0.0.1/cloud');
-global.Task  = db.model('Task');
-global.Group = db.model('Group');
+var mongoose = mongoose;
+var Schema = Schema;
+var db = mongoose.connect('mongodb://127.0.0.1/cloudyrun');
+var Task  = db.model('Task');
+var Group = db.model('Group');
 
 
 ///////////////////////////////////////////////////////////////////
