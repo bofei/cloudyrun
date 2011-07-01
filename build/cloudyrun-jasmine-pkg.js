@@ -724,8 +724,8 @@ var CloudyRun = {
             });
             
             if (self === top && !window.opener) {
-                // data = 'good, please copy and run!<br> <code>:run '+location.href+'</code>';
-                // $('<div style="position:fixed;right:10px;bottom:10px;z-index:1000001;">'+data+'</div>').appendTo('body');
+                var command = encodeURIComponent(':run '+location.href);
+                $('<a href="http://test.taobao.com:8080/?command='+command+'" title="Run In CloudyRun" style="position:fixed;right:10px;top:10px;z-index:1000001;width:32px;height:32px;"><img src="http://img02.taobaocdn.com/tps/i2/T1r3KiXlRcXXXXXXXX-32-32.png" /></a>').appendTo('body');
             } else {
                 var server = this._config.server;
                 this._post(server + 'post', data);
