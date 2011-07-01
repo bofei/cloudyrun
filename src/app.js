@@ -197,8 +197,19 @@ var emit = function(name, type, data) {
 var emitInfoToConsole = function() {
     emit('updateInfo', 'console', {
         clientInfo: getClientInfo(),
-        queueInfo:  getQueueInfo()
+        queueInfo:  getQueueInfo(),
+        consoleInfo: getConsoleInfo()
     });
+};
+
+var getConsoleInfo = function() {
+    var count = 0;
+    for (var k in sessions['console']) {
+        count ++;
+    }
+    return {
+        count: count
+    };
 };
 
 var getClientInfo = function() {

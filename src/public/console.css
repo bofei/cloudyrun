@@ -47,6 +47,8 @@ h1 sup a {
     overflow: hidden;
 }
 #command {
+    position: relative;
+    z-index: 2;
     width: 600px;
     background: #32577b;
     color: #fff;
@@ -56,6 +58,7 @@ h1 sup a {
     border-radius: 3px 3px 0 0;
 }
 #browser-list {
+    position: relative;
     background: #1b2f43;
     padding: 3px 4px 0;
     color: #fff;
@@ -63,6 +66,11 @@ h1 sup a {
 }
 #browser-list b {
     color: #70a4d6;
+}
+#browser-list b.console {
+    position: absolute;
+    right: 3px;
+    top: 3px;
 }
 #browser-list b sup {
     position: absolute;
@@ -207,6 +215,7 @@ p.tips {
  * Group
  */
 #group {
+    z-index: 10;
     display:none;
     background: #fff;
     width: 600px;
