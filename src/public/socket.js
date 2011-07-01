@@ -31,10 +31,19 @@ var socket = io.connect('', {
 socket.on('connect', function() {
     log('connected');
     emit('init');
+
+    if (g_config.type === 'console') {
+        $('#command').attr('disabled', false).val('');
+    }
 });
 
 socket.on('disconnect', function() {
     log('disconnected');
+    console.log('disconnect');
+    if (g_config.type === 'console') {
+        $('#command').attr('disabled', true).val('disconnected');
+        $('#browser-list').html('disconnected');
+    }
 });
 
 socket.on('updatebase', function(data) {
