@@ -141,7 +141,7 @@ io.sockets
         });
 
         socket.on('addTask', function(data) {
-            addTask(data);
+            addTask(data, this);
         });
 
         socket.on('updateTask', function(data) {
@@ -255,7 +255,7 @@ var getSessions = function(type, ids) {
 
 var taskQueue = [];
 
-var addTask = function(data, cb) {
+var addTask = function(data, console, cb) {
     log('task inputed: ' + data.command);
 
     var clients = getClients(data.clientIds);
@@ -269,7 +269,8 @@ var addTask = function(data, cb) {
         taskId:  uuid(),
         command: data.command,
         results: results,
-        date:    new Date()
+        date:    new Date(),
+        console: console
     });
 
     t.save(function(err) {
@@ -297,15 +298,15 @@ var addTask = function(data, cb) {
  */
 var emitTask = function(name, type, t) {
     var data = t;
-    if (type === 'console') {
-        emit(name, type, data);
-    } else {
-        for (var k in t.results[0]) {
+    if (type === 'client') {
+        for (var k in data.results[0]) {
             var client = getSessions('client', [k])[0];
             if (client) {
                 emit(name, [client], data);
             }
         }
+    } else if (type === 'console') {
+        emit(name, t.console ? [t.console] : [], data);
     }
 };
 
@@ -573,7 +574,7 @@ var runGroup = function(g) {
     var len = g.commands.length;
 
     for (var i=0; i<len; i++) {
-        addTask({command:g.commands[i]}, function(t) {
+        addTask({command:g.commands[i]}, null, function(t) {
             taskIds.push(t.taskId);
             if (taskIds.length < len) {
                 return;
@@ -706,7 +707,9 @@ var sendMail = function(html, subject, address) {
 };
 
 
-// Run Group When App Is Initted
+///////////////////////////////////////////////////////////////////
+// Run
+
 Group.find(null, function(err, docs) {
     if (!err) {
         docs.forEach(function(g) {
@@ -714,3 +717,4 @@ Group.find(null, function(err, docs) {
         });
     }
 });
+
