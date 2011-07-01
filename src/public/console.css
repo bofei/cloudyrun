@@ -32,6 +32,9 @@ h1 sup {
     text-shadow: 0 0 0;
     font-weight: normal;
 }
+h1 sup a {
+    color: #fff;
+}
 
 #input {
     border-radius: 3px;
