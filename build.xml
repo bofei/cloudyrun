@@ -9,7 +9,6 @@
         <concat destfile="./build/cloudyrun-pkg.js" encoding="utf-8" outputencoding="utf-8">
             <path path="./src/public/libs/jquery-1.5.2.min.js"/>
             <path path="./src/public/libs/json2.js"/>
-            <path path="./src/public/libs/underscore-min.js"/>
             <path path="./src/public/util.js"/>
             <path path="./src/public/cloudyrun/cloudyrun.js"/>
         </concat>
