@@ -16,6 +16,7 @@ v0.4
 - refactor
 - remove room support
 - support run task with url parameter
+- setup flashsocket correctly
 
 #### v0.3
 - add group support
