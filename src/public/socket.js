@@ -79,13 +79,15 @@ socket.on('updateInfo', function(data) {
     // update browsers
     if (data.clientInfo) {
         var clientInfo = [];
-        data.clientInfo.sort(function(a, b) {
-            return a.browser.toLowerCase() < b.browser.toLowerCase();
-        });
+        var obj = {}, arr = [];
         for (var k in data.clientInfo) {
-            clientInfo.push('<b>'+data.clientInfo[k].browser+'</b>');
+            var b = data.clientInfo[k].browser;
+            obj[b] = (obj[b] || 0) + 1;
         }
-        jQuery('#browser-list').html('Connected: ' + clientInfo.join(', '));
+        for (var k in obj) {
+            arr.push(k + (obj[k] > 1 ? '('+obj[k]+')' : ''));
+        }
+        jQuery('#browser-list').html('Connected: <b>' + arr.join('</b>, <b>') + '</b>');
     }
 
     // update queue
