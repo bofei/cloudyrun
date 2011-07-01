@@ -1,0 +1,11 @@
+#sandboxframe {
+    width: 1px;
+    height: 1px;
+}
+
+#output {
+    border: 1px solid #ccc;
+    height: 400px;
+    overflow: auto;
+    font:  12px/1.5 arial;
+}

@@ -13,7 +13,7 @@ function Schedual(hour, minite, func, id) {
         diff = 24*60*60*1000 - diff;
     }
 
-    console.log('[log] diff: ' + diff);
+    log('group diff: ' + diff);
     var timer = setTimeout(function() {
         self.func();
     }, diff);

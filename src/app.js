@@ -706,7 +706,7 @@ var sendMail = function(html, subject, address) {
             });
     message.attach_alternative(html);
     server.send(message, function(err, message) {
-        console.log(err||message);
+        log(err || 'mail sent', err ? 'err' : 'log');
     });
 };
 
