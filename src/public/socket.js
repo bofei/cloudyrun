@@ -20,7 +20,7 @@ var emit = function(name, data) {
 };
 
 var socket = io.connect('', {
-    'transports': ['websocket', 'flashsocket'], // 'htmlfile', 'xhr-polling'
+    'transports': ['websocket', 'flashsocket', 'xhr-polling'], // 'htmlfile'
     'reconnection delay': 500,
     'max reconnection attempts': 10000
 });
