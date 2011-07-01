@@ -60,7 +60,10 @@ app.configure(function() {
 app.get('/', function(req, res) {
     res.render('console', {layout:false});
 });
-app.get('/client', function(req, res) {
+app.get('/console', function(req, res) {
+    res.render('console', {layout:false});
+});
+app.get('/client-no-body-knows', function(req, res) {
     res.render('client',  {layout:false});
 });
 app.get('/proxy', function(req, res) {
