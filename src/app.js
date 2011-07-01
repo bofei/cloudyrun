@@ -1,10 +1,10 @@
 ///////////////////////////////////////////////////////////////////
 // Global
 
-var _ = require('underscore');
-var util = require('./public/util');
-var uuid = require('node-uuid');
-var log = function(msg, type) {
+global._ = require('underscore');
+global.util = require('./public/util');
+global.uuid = require('node-uuid');
+global.log = function(msg, type) {
     type = type || 'log';
     console.log(' - ' + type + ': ' + msg);
 };
