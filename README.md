@@ -1,11 +1,6 @@
 CloudyRun is a test driver based on browser clients.
 
-## Get Start
-* git clone this
-* cp ./src/config.sample ./src/config.js
-* fill in your own config
-* install dependency with npm
-* sudo node src/app.js
+![Alt text](http://wiki.ued.taobao.net/lib/exe/fetch.php?hash=28b43c&media=http%3A%2F%2Fimg02.taobaocdn.com%2Ftps%2Fi2%2FT1o29iXaXoXXXXXXXX-737-466.jpg)
 
 ## Current Version
 v0.4
@@ -33,5 +28,7 @@ v0.4
 - add command executing support
 - add jasmine test case support
 
-## Language
+## Thanks
 * NodeJS
+* MongoDB
+* Socket.IO
