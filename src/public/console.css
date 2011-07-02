@@ -218,6 +218,7 @@ p.tips {
     z-index: 10;
     display:none;
     background: #fff;
+    border: 1px solid #333;
     width: 600px;
     height: 400px;
     position: absolute;
@@ -225,8 +226,7 @@ p.tips {
     top: 50%;
     margin-top: -200px;
     margin-left: -300px;
-    border-radius: 5px;
-    box-shadow: 3px 3px 3px #333;
+    box-shadow: rgba(0,0,0,.2) 0 4px 16px;
 }
 #group-hd {
     height: 40px;

@@ -600,8 +600,6 @@ var runGroup = function(g, justRun) {
             });
             saveGroup(g);
 
-            log('-------------------');
-            console.log(justRun);
             if (justRun) return;
 
             waitTasksComplete(taskIds, function() {
