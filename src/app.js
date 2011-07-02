@@ -63,7 +63,7 @@ app.get('/', function(req, res) {
 app.get('/console', function(req, res) {
     res.render('console', {layout:false});
 });
-app.get('/client-no-body-knows', function(req, res) {
+app.get('/' + global.config.clientPath, function(req, res) {
     res.render('client',  {layout:false});
 });
 app.get('/proxy', function(req, res) {
