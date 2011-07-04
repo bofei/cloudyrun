@@ -633,6 +633,12 @@ var util = {
     },
     isString: function(o) {
         return ({}).toString.call(o) === '[object String]';
+    },
+
+    log: function(msg) {
+        if (typeof console !== 'undefined' && console.log) {
+            console.log(msg);
+        }
     }
 
 };
@@ -4319,7 +4325,6 @@ util.extend(CloudyRun, {
             for (var selector in d) {
                 var el = $(selector)[0];
                 if (!el) {
-                    util.log('element not found: ' + selector);
                     continue;
                 }
                 var currentLayout = getLayout(el);
@@ -4397,8 +4402,6 @@ util.extend(CloudyRun, {
     };
 
     function compare(current, origin, selector, diff) {
-        // console.log(JSON.stringify(current) + ' vs. ' + JSON.stringify(origin));
-
         // check
         var props = ['width', 'left', 'height', 'top'];
         var i;
@@ -4491,8 +4494,8 @@ util.extend(CloudyRun, {
     }
 
     function _login(username, password) {
-        var ifrSrc = 'http://login.'+domain2+'/member/login.jhtml?style=minisimple&from=jianghu' +
-                '&full_redirect=&redirect_url='+encodeURI(location.href);
+        var ifrSrc = 'http://login.'+domain2+'/member/login.jhtml?style=minisimple&from=buy' +
+                '&full_redirect=false&redirect_url='+encodeURI(location.href);
         var ifr = $('<iframe src="'+ifrSrc+'" style="background:#fff;position:absolute;left:0;top:0;"></iframe>');
         ifr.appendTo('body');
 

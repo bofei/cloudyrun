@@ -186,7 +186,6 @@
             for (var selector in d) {
                 var el = $(selector)[0];
                 if (!el) {
-                    util.log('element not found: ' + selector);
                     continue;
                 }
                 var currentLayout = getLayout(el);
@@ -264,8 +263,6 @@
     };
 
     function compare(current, origin, selector, diff) {
-        // console.log(JSON.stringify(current) + ' vs. ' + JSON.stringify(origin));
-
         // check
         var props = ['width', 'left', 'height', 'top'];
         var i;

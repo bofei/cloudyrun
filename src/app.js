@@ -58,10 +58,12 @@ app.configure(function() {
 });
 
 app.get('/', function(req, res) {
-    res.render('console', {layout:false});
+    var wiki = '<a href="'+global.config.wikiURL+'" target="_blank">wiki</a>';
+    res.render('console', {layout:false,wiki:wiki});
 });
 app.get('/console', function(req, res) {
-    res.render('console', {layout:false});
+    var wiki = '<a href="'+global.config.wikiURL+'" target="_blank">wiki</a>';
+    res.render('console', {layout:false,wiki:wiki});
 });
 app.get('/' + global.config.clientPath, function(req, res) {
     res.render('client',  {layout:false});
@@ -84,13 +86,13 @@ app.get('/commands', function(req, res) {
 app.get('/task/:taskId', function(req, res) {
     var taskId = req.params.taskId;
     getTaskInfoById(taskId, function(data) {
-        res.render('task.jade', _.extend(data, {layout:false}));
+        res.render('task', _.extend(data, {layout:false}));
     });
 });
 app.get('/group/:groupId', function(req, res) {
     var groupId = req.params.groupId;
     getGroupInfoById(groupId, function(data) {
-        res.render('group.jade', _.extend(data, {layout:false}));
+        res.render('group', _.extend(data, {layout:false}));
     });
 });
 app.post('/post', function(req, res) {

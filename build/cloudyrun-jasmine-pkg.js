@@ -633,6 +633,12 @@ var util = {
     },
     isString: function(o) {
         return ({}).toString.call(o) === '[object String]';
+    },
+
+    log: function(msg) {
+        if (typeof console !== 'undefined' && console.log) {
+            console.log(msg);
+        }
     }
 
 };

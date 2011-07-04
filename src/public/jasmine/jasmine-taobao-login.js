@@ -22,8 +22,8 @@
     }
 
     function _login(username, password) {
-        var ifrSrc = 'http://login.'+domain2+'/member/login.jhtml?style=minisimple&from=jianghu' +
-                '&full_redirect=&redirect_url='+encodeURI(location.href);
+        var ifrSrc = 'http://login.'+domain2+'/member/login.jhtml?style=minisimple&from=buy' +
+                '&full_redirect=false&redirect_url='+encodeURI(location.href);
         var ifr = $('<iframe src="'+ifrSrc+'" style="background:#fff;position:absolute;left:0;top:0;"></iframe>');
         ifr.appendTo('body');
 

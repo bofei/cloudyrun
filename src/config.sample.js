@@ -8,5 +8,6 @@ global.config = {
         tls: true,
         from: ''
     },
-    clientPath: 'client-no-body-knows'
+    clientPath: 'client-no-body-knows',
+    wikiURL: 'https://github.com/sorrycc/cloudyrun/'
 };
