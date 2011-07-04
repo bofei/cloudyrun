@@ -88,7 +88,7 @@ var CloudyRun = {
                 var server = this._config.server;
                 this._post(server + 'post', data);
 
-                if (window.opener && url.indexOf('__newwindow__') > -1) {
+                if (window.opener && location.href.indexOf('__newwindow__') > -1) {
                     setTimeout(function() {
                         window.close();
                     }, 500);
