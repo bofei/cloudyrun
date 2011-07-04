@@ -96,6 +96,7 @@ socket.on('updateInfo', function(data) {
         for (var k in obj) {
             arr.push(k + (obj[k] > 1 ? '('+obj[k]+')' : ''));
         }
+        arr.sort();
         var consoleInfo = data.consoleInfo && data.consoleInfo.count && data.consoleInfo.count > 1
                 ? '<b class="console" title="console count">'+data.consoleInfo.count+'</b>'
                 : '';
