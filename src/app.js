@@ -72,7 +72,7 @@ app.get('/proxy', function(req, res) {
     res.render('proxy',   {layout:false});
 });
 app.get('/empty', function(req, res) {
-    res.send('empty');
+    res.render('empty',   {layout:false});
 });
 app.get('/clearqueue', function(req, res) {
     clearQueue();
