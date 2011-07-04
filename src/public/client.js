@@ -9,7 +9,15 @@
     var sandbox = sandboxframe.contentDocument || sandboxframe.contentWindow.document;
 
     /* rewrite functions */
-    sandboxframe.contentWindow.alert = function() {};
+    sandboxframe.contentWindow.alert = function() {
+        throw new Error('alert not permitted');
+    };
+    sandboxframe.contentWindow.prompt = function() {
+        throw new Error('prompt not permitted');
+    };
+    sandboxframe.contentWindow.confirm = function() {
+        throw new Error('confirm not permitted');
+    };
     if (({}).toString.call(setTimeout) === '[object Object]') {
         var _setTimeout = sandboxframe.contentWindow.setTimeout;
         sandboxframe.contentWindow.setTimeout = function(a, b, c, d) {
@@ -86,6 +94,9 @@
     var run = function(cmd) {
         var win = sandboxframe.contentWindow;
         var rawoutput;
+        if (cmd.indexOf('parent.') === 0 || cmd.indexOf('top.') === 0) {
+            return '[script error] parent prop access not permitted';
+        }
         if (!win.eval && win.execScript) {
             rawoutput = win.execScript(cmd);
         } else if (win.eval) {
