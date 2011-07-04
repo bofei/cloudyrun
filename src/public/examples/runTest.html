@@ -9,7 +9,8 @@
 
 <script src="/cloudyrun-pkg.js"></script>
 <script>
-    CloudyRun.sendResult('hello world');
+    var result = !+'\v1' ? '不好意思，IE 用户。您拿多少火车票我们都不会让您上飞机的！' : '看，灰机！！';
+    CloudyRun.sendResult(result);
 </script>
 
 </body>

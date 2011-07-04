@@ -106,8 +106,6 @@
                     $.css(this, 'visibility') != 'hidden' &&
                     $.css(this, 'display') != 'none') {
                     var selector = $(this).getPath();
-                    util.log(this);
-                    util.log(selector);
                     var l = getLayout(selector);
                     if (l) {
                         data[selector] = l;

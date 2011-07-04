@@ -7,5 +7,6 @@ global.config = {
         ssl: false,
         tls: true,
         from: ''
-    }
+    },
+    clientPath: 'client-no-body-knows'
 };

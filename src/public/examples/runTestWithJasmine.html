@@ -8,12 +8,11 @@
 <h1>Test: runTest Parser With Jasmine</h1>
 
 <script src="/cloudyrun-jasmine-pkg.js"></script>
-
 <script>
     CloudyRun.runJasmine(function() {
         describe('jasmine test', function() {
-            it('should pass', function() {
-                expect(1).toEqual(1);
+            it('should be passed expect IE8', function() {
+                expect(1).toEqual(!+'\v1' && 'prototype' in Image ? 0 : 1);
             });
         });
     });
