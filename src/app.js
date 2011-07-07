@@ -9,10 +9,10 @@ global.log = function(msg, type) {
     var colors = {
         'err': '31', // red
         'log': '90', // gray
-        'inf': '32', // green
+        'info': '32', // green
         'ooo': '36'  // blue
     };
-    console.log('   \033['+colors[type]+'m'+type+' -\033[39m ' + msg);
+    console.log('   \033['+colors[type]+'m'+type+(type=='info'?'  ':'   ')+'-\033[39m ' + msg);
 };
 
 require('./config');
@@ -109,7 +109,7 @@ app.post('/post', function(req, res) {
 });
 
 app.listen(8080, function() {
-    log('started @ 8080');
+    log('started @ 8080', 'info');
 });
 
 
