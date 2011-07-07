@@ -4133,9 +4133,9 @@ util.extend(CloudyRun, {
     var index = path.lastIndexOf('/');
     path = path.slice(0, index);
 
-    $(document).ready(function() {
+    //$(document).ready(function() {
         $('<link rel="stylesheet" href="'+path+'/cloudyrun-jasmine-pkg.css" />').appendTo('body');
-    });
+    //});
 
 })();
 (function() {
@@ -4318,7 +4318,7 @@ util.extend(CloudyRun, {
             var failed = [];
 
             diff = diff || {};
-            if (typeof diff === 'string') {
+            if (typeof diff === 'number') {
                 diff = {'width':diff,'height':diff,'left':diff,'top':diff};
             }
 

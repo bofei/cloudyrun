@@ -179,7 +179,7 @@
             var failed = [];
 
             diff = diff || {};
-            if (typeof diff === 'string') {
+            if (typeof diff === 'number') {
                 diff = {'width':diff,'height':diff,'left':diff,'top':diff};
             }
 
