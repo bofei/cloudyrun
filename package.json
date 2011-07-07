@@ -1,6 +1,6 @@
 {
     "name": "cloudyrun",
-    "version": "0.9",
+    "version": "0.4",
     "author": "chencheng <sorrycc@gmail.com>",
     "dependencies": {
         "socket.io": "0.7.2",
@@ -11,6 +11,7 @@
         "node-uuid": "1.2.0",
         "underscore": "1.1.6"
     },
+    "repository": "git://github.com/sorrycc/cloudyrun.git",
     "engines": {
         "node": ">= 0.4.8"
     }
