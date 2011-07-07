@@ -6,7 +6,13 @@ global.util = require('./public/util');
 global.uuid = require('node-uuid');
 global.log = function(msg, type) {
     type = type || 'log';
-    console.log(' - ' + type + ': ' + msg);
+    var colors = {
+        'err': '31', // red
+        'log': '90', // gray
+        'inf': '32', // green
+        'ooo': '36'  // blue
+    };
+    console.log('   \033['+colors[type]+'m'+type+' -\033[39m ' + msg);
 };
 
 require('./config');
