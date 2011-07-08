@@ -15,7 +15,11 @@ global.log = function(msg, type) {
     console.log('   \033['+colors[type]+'m'+type+(type=='info'?'  ':'   ')+'-\033[39m ' + msg);
 };
 
+try {
 require('./config');
+} catch(e) {
+require('./config.sample');
+}
 
 
 ///////////////////////////////////////////////////////////////////
@@ -108,8 +112,9 @@ app.post('/post', function(req, res) {
     res.end('');
 });
 
-app.listen(8080, function() {
-    log('started @ 8080', 'info');
+var port = process.env.VMC_APP_PORT || process.env.PORT || 8080,
+app.listen(port, function() {
+    log('started @ ' + port, 'info');
 });
 
 
