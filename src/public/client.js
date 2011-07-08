@@ -143,7 +143,10 @@
             // get timeout from url
             var timeout = 10000;
             try {
-                timeout = url.split('timeout=')[1].split('&')[0];
+                timeout = parseInt(url.split('timeout=')[1].split('&')[0], 10);
+                if (timeout > 200000) {
+                    timeout = 200000;
+                }
             } catch(e) {}
 
             // timeout
