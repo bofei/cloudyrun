@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>CloudyRun Test: runTest</title>
+</head>
+<body>
+<h1>Test: runTest Parser With Jasmine</h1>
+
+<script src="http://cloudyrun.com:8080/cloudyrun-jasmine-pkg.js"></script>
+<script>
+    CloudyRun.runJasmine(function() {
+        describe('jasmine test', function() {
+            it('should be passed expect IE8', function() {
+                expect(1).toEqual(!+'\v1' && 'prototype' in Image ? 0 : 1);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
