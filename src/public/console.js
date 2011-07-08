@@ -21,7 +21,7 @@ $('#frm').submit(function() {
         return false;
     }
 
-    if (!$('#browser-list b')[0]) {
+    if (!$('#browser-list b:not(.console)')[0]) {
         alert('[warn] no client connected!');
         return false;
     }
@@ -59,6 +59,12 @@ $(document).ready(function() {
 // Methods
 
 var addTask = function(val, clientIds) {
+    try {
+        eval(val);
+    } catch(e) {
+        console.log(e);
+    }
+    
     emit('addTask', {
         command: val,
         clientIds: clientIds

@@ -100,7 +100,8 @@ socket.on('updateInfo', function(data) {
         var consoleInfo = data.consoleInfo && data.consoleInfo.count && data.consoleInfo.count > 1
                 ? '<b class="console" title="console count">'+data.consoleInfo.count+'</b>'
                 : '';
-        jQuery('#browser-list').html('clients: <b>' + arr.join('</b>, <b>') + '</b>' + consoleInfo);
+        var ci = arr.length ? '<b>' + arr.join('</b>, <b>') + '</b>' : '';
+        jQuery('#browser-list').html('clients: ' + ci + consoleInfo);
     }
 
     // update queue
