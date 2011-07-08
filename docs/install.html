@@ -19,21 +19,21 @@
   <h2>安装</h2>
 
   <ol>
-    <li>安装 <a href="http://www.mongodb.org/display/DOCS/Home" target="_blank">MongoDB</a></li>
-    <li>安装 <a href="http://nodejs.org/" target="_blank">NodeJS</a> 和 <a href="http://npmjs.org/" target="_blank">npm</a></li>
-    <li>用 npm 安装依赖包
+    <li>安装 <a href="http://www.mongodb.org/display/DOCS/Home" target="_blank">MongoDB</a> ；</li>
+    <li>安装 <a href="http://nodejs.org/" target="_blank">NodeJS</a> 和 <a href="http://npmjs.org/" target="_blank">npm</a> ；</li>
+    <li>用 npm 安装依赖包；
 <pre>
 npm install socket.io express jade mongoose emailjs node-uuid underscore
 npm install forever -g
 </pre>
     </li>
-    <li>clone cloudyrun 到本地
+    <li>clone cloudyrun 到本地；
 <pre>
 git clone git://github.com/sorrycc/cloudyrun.git
 </pre>
     </li>
-    <li>将 src/config.sample.js 改名为 src/config.js，并修改配置</li>
-    <li>用 forever 运行 cloudyrun
+    <li>将 src/config.sample.js 改名为 src/config.js，并修改配置；</li>
+    <li>用 forever 运行 cloudyrun。
 <pre>
 forever start path/to/cloudyrun/src/app.js
 </pre>
