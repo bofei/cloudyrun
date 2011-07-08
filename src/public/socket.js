@@ -7,7 +7,7 @@ var log = function(msg, type) {
         msg = JSON.stringify(msg);
     }
     type = type || 'log';
-    document.getElementById('output').innerHTML += ' - ' + type + ': ' + msg + '<br>';
+    // document.getElementById('output').innerHTML += ' - ' + type + ': ' + msg + '<br>';
 };
 
 var base = {
