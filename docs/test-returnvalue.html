@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>文档 - CloudyRun</title>
+<title>返回值测试 - CloudyRun</title>
 <link rel="stylesheet" href="assets/style.css"/>
 </head>
 <body>
@@ -16,7 +16,26 @@
     <li><a href="./">文档</a></li>
   </ul>
 
-  your content
+  <p>返回值测试顾名思义，就是将你指定的返回值在控制台里显示出来。</p>
+  <p>首先要记住这个接口，这是 CloudyRun 用来往服务器端回传数据的：</p>
+
+<pre>
+CloudyRun.sendResult(YourMessage);
+</pre>
+
+  <p>下面是一段典型的测试代码：</p>
+
+<pre>
+&lt;script src="http://assets.daily.taobao.net/p/cloudyrun/1.0/cloudyrun-taobao-pkg.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    var result = !+'\v1' ? '不好意思，IE 用户。您拿多少火车票我们都不会让您上飞机的！' : '看，灰机！！';
+    CloudyRun.sendResult(result);
+&lt;/script&gt;
+</pre>
+
+  <p>对应的 <a href="http://cloudyrun.com/examples/test-returnvalue.html" target="_blank">Demo</a> 已经为您准备好了，点开右上角的 “云图标”，即刻在 CloudyRun 里执行吧！不出所料的话，执行结果是这样的吗？</p>
+
+  <p><img src="http://img02.taobaocdn.com/tps/i2/T1AVXqXnJuXXXXXXXX-666-188.png" /></p>
 
   <div id="ribbon">
     <a href="http://github.com/sorrycc/cloudyrun">
