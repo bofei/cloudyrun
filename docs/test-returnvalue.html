@@ -26,9 +26,10 @@ CloudyRun.sendResult(YourMessage);
   <p>下面是一段典型的测试代码：</p>
 
 <pre>
-&lt;script src="http://assets.daily.taobao.net/p/cloudyrun/1.0/cloudyrun-taobao-pkg.js"&gt;&lt;/script&gt;
+&lt;script src="/cloudyrun-jasmine-pkg.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-    var result = !+'\v1' ? '不好意思，IE 用户。您拿多少火车票我们都不会让您上飞机的！' : '看，灰机！！';
+    var result = !+'\v1' ? '不好意思，IE 用户。您拿多少火车票我们都不会让您上飞机的！'
+                         : '看，灰机！！';
     CloudyRun.sendResult(result);
 &lt;/script&gt;
 </pre>
