@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title>文档 - CloudyRun</title>
+<title>功能测试 - CloudyRun</title>
 <link rel="stylesheet" href="assets/style.css"/>
 </head>
 <body>
@@ -16,7 +16,46 @@
     <li><a href="./">文档</a></li>
   </ul>
 
-  your content
+  <h2>功能测试</h2>
+
+  <p>功能测试有多种执行方式：</p>
+  <ul>
+    <li>调用 CloudyRun 接口执行</li>
+    <li>通过 url 里加 __cloudyrun__ 参数指定用例脚本，自动执行</li>
+  </ul>
+
+  <p>下面详细说明之。</p>
+
+  <h3>1. 调用 CloudyRun 接口执行</h3>
+  
+  <p>CloudyRun 定义了一个执行 Jasmine 用例的接口，可以传入包含用例的匿名函数或用例脚本的 URL 。</p>
+
+<pre>
+CloudyRun.runJasmine(YourSpec);
+</pre>
+  
+  <p>典型的书写格式如下：</p>
+
+<pre>
+&lt;script src="/cloudyrun-jasmine-pkg.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    CloudyRun.runJasmine(function() {
+        describe('jasmine test', function() {
+            it('should be passed expect IE8', function() {
+                expect(1).toEqual(!+'\v1' && 'prototype' in Image ? 0 : 1);
+            });
+        });
+    });
+&lt;/script&gt;
+</pre>
+  
+  <p>对应的 <a href="http://cloudyrun.com/examples/test-jasmine.html" target="_blank">Demo</a> 在这里，同上，点开右上角的云图标，不出所料的话，执行结果是这样的吧。</p>
+
+  <p><img src="http://img03.taobaocdn.com/tps/i3/T12FxqXb8tXXXXXXXX-667-80.png" /></p>
+
+  <h3>2. 通过 url 里加 __cloudyrun__ 参数指定用例脚本，自动执行</h3>
+
+  <p>//TODO</p>
 
   <div id="ribbon">
     <a href="http://github.com/sorrycc/cloudyrun">
