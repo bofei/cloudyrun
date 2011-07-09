@@ -1,8 +1,8 @@
-CloudyRun is a test driver based on browser clients.
+CloudyRun 是一个跨平台跨浏览器的测试驱动工具。
 
 ![Alt text](http://img02.taobaocdn.com/tps/i2/T1o29iXaXoXXXXXXXX-737-466.jpg)
 
-## Current Version
+## 当前版本
 v0.4
 
 ## ChangeLog
