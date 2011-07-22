@@ -3295,7 +3295,9 @@ jasmine.TrivialReporter.prototype.reportSuiteResults = function(suite) {
   if (results.totalCount == 0) { // todo: change this to check results.skipped
     status = 'skipped';
   }
-  this.suiteDivs[suite.id].className += " " + status;
+  try {
+    this.suiteDivs[suite.id].className += " " + status;
+  } catch(e) {}
 };
 
 jasmine.TrivialReporter.prototype.reportSpecStarting = function(spec) {
@@ -3415,7 +3417,9 @@ jasmine.JSONReporter.prototype.reportSuiteResults = function(suite) {
     if (results.totalCount == 0) { // todo: change this to check results.skipped
         status = 'skipped';
     }
-    this.results.suites[suite.id].status = status;
+    try {
+        this.results.suites[suite.id].status = status;
+    } catch(e) {}
 };
 
 jasmine.JSONReporter.prototype.reportSpecResults = function(spec) {

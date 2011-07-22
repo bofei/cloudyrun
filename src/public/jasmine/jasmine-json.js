@@ -45,7 +45,9 @@ jasmine.JSONReporter.prototype.reportSuiteResults = function(suite) {
     if (results.totalCount == 0) { // todo: change this to check results.skipped
         status = 'skipped';
     }
-    this.results.suites[suite.id].status = status;
+    try {
+        this.results.suites[suite.id].status = status;
+    } catch(e) {}
 };
 
 jasmine.JSONReporter.prototype.reportSpecResults = function(spec) {

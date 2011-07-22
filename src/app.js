@@ -7,10 +7,10 @@ global.uuid = require('node-uuid');
 global.log = function(msg, type) {
     type = type || 'log';
     var colors = {
-        'err': '31', // red
-        'log': '90', // gray
+        'err': 	'31', // red
+        'log': '90',  // gray
         'info': '32', // green
-        'ooo': '36'  // blue
+        'ooo': '36'   // blue
     };
     console.log('   \033['+colors[type]+'m'+type+(type=='info'?'  ':'   ')+'-\033[39m ' + msg);
 };
